@@ -1,0 +1,2902 @@
+[
+  {
+    "id": 1,
+    "title": "شقة جاهزة للسكن في زيد ويست",
+    "type": "شقة",
+    "city": "الشيخ زايد",
+    "compound": "زيد ويست",
+    "location": "الشيخ زايد - زيد ويست",
+    "price_val": 3350000,
+    "price": "3,350,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 95,
+    "floor": 2,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "تكييف مركزي",
+      "حديقة خاصة",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 95 م² تضم 4 غرف نوم و4 حمام داخل زيد ويست في الشيخ زايد. ومن مميزاتها مسطحات خضراء وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 2,
+    "title": "استوديو بإطلالة مميزة في فيلت",
+    "type": "استوديو",
+    "city": "التجمع الخامس",
+    "compound": "فيلت",
+    "location": "التجمع الخامس - فيلت",
+    "price_val": 2900000,
+    "price": "2,900,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 65,
+    "floor": 7,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "مسطحات خضراء",
+      "جراج خاص",
+      "تكييف مركزي",
+      "ملعب أطفال"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 65 م² تضم 1 غرف نوم و1 حمام داخل فيلت في التجمع الخامس. ومن مميزاتها مسطحات خضراء وجراج خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 3,
+    "title": "بنتهاوس مودرن في سراي هليوبوليس",
+    "type": "بنتهاوس",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 20100000,
+    "price": "20,100,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 335,
+    "floor": 12,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "ملعب أطفال",
+      "غرفة خادمة",
+      "جراج خاص",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "بنتهاوس بمساحة 335 م² تضم 5 غرف نوم و5 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها ملعب أطفال وغرفة خادمة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 4,
+    "title": "استوديو بموقع استراتيجي في نصر ريزيدنس",
+    "type": "استوديو",
+    "city": "مدينة نصر",
+    "compound": "نصر ريزيدنس",
+    "location": "مدينة نصر - نصر ريزيدنس",
+    "price_val": 2050000,
+    "price": "2,050,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 55,
+    "floor": 5,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "غرفة خادمة",
+      "ملعب أطفال",
+      "مسطحات خضراء"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 55 م² تضم 1 غرف نوم و1 حمام داخل نصر ريزيدنس في مدينة نصر. ومن مميزاتها منطقة تجارية وغرفة خادمة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 5,
+    "title": "بنتهاوس راقٍ في سراي هليوبوليس",
+    "type": "بنتهاوس",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 13150000,
+    "price": "13,150,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 270,
+    "floor": 12,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حديقة خاصة",
+      "منطقة تجارية",
+      "ملعب أطفال",
+      "غرفة خادمة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "بنتهاوس بمساحة 270 م² تضم 4 غرف نوم و4 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها حديقة خاصة ومنطقة تجارية، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 6,
+    "title": "استوديو بإطلالة مميزة في أمواج",
+    "type": "استوديو",
+    "city": "الساحل الشمالي",
+    "compound": "أمواج",
+    "location": "الساحل الشمالي - أمواج",
+    "price_val": 2650000,
+    "price": "2,650,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 45,
+    "floor": 8,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "ملعب أطفال",
+      "مسطحات خضراء",
+      "منطقة تجارية",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 45 م² تضم 1 غرف نوم و1 حمام داخل أمواج في الساحل الشمالي. ومن مميزاتها ملعب أطفال ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 7,
+    "title": "شقة بموقع استراتيجي في ميراج الشروق",
+    "type": "شقة",
+    "city": "الشروق",
+    "compound": "ميراج الشروق",
+    "location": "الشروق - ميراج الشروق",
+    "price_val": 2450000,
+    "price": "2,450,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 110,
+    "floor": 4,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "جراج خاص",
+      "منطقة تجارية",
+      "ملعب أطفال",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 110 م² تضم 2 غرف نوم و2 حمام داخل ميراج الشروق في الشروق. ومن مميزاتها جراج خاص ومنطقة تجارية، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 8,
+    "title": "فيلا بإطلالة مميزة في جرين فالي",
+    "type": "فيلا",
+    "city": "الشروق",
+    "compound": "جرين فالي",
+    "location": "الشروق - جرين فالي",
+    "price_val": 13250000,
+    "price": "13,250,000",
+    "beds": 6,
+    "baths": 6,
+    "area": 490,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "منطقة تجارية",
+      "نادي رياضي",
+      "ملعب أطفال",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 490 م² تضم 6 غرف نوم و6 حمام داخل جرين فالي في الشروق. ومن مميزاتها منطقة تجارية ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 9,
+    "title": "شقة فاخرة في هايد بارك",
+    "type": "شقة",
+    "city": "التجمع الخامس",
+    "compound": "هايد بارك",
+    "location": "التجمع الخامس - هايد بارك",
+    "price_val": 8600000,
+    "price": "8,600,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 220,
+    "floor": 2,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "نادي رياضي",
+      "ملعب أطفال",
+      "حمام سباحة",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 220 م² تضم 4 غرف نوم و4 حمام داخل هايد بارك في التجمع الخامس. ومن مميزاتها نادي رياضي وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 10,
+    "title": "دوبلكس بموقع استراتيجي في هليوبوليس جاردنز",
+    "type": "دوبلكس",
+    "city": "مصر الجديدة",
+    "compound": "هليوبوليس جاردنز",
+    "location": "مصر الجديدة - هليوبوليس جاردنز",
+    "price_val": 8200000,
+    "price": "8,200,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 190,
+    "floor": 3,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "أمن على مدار الساعة",
+      "منطقة تجارية",
+      "ملعب أطفال"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 190 م² تضم 5 غرف نوم و5 حمام داخل هليوبوليس جاردنز في مصر الجديدة. ومن مميزاتها تكييف مركزي وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 11,
+    "title": "فيلا جاهزة للسكن في أمواج",
+    "type": "فيلا",
+    "city": "الساحل الشمالي",
+    "compound": "أمواج",
+    "location": "الساحل الشمالي - أمواج",
+    "price_val": 29050000,
+    "price": "29,050,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 465,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "جراج خاص",
+      "ملعب أطفال",
+      "غرفة خادمة",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 465 م² تضم 4 غرف نوم و4 حمام داخل أمواج في الساحل الشمالي. ومن مميزاتها جراج خاص وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 12,
+    "title": "فيلا راقية في بالم هيلز",
+    "type": "فيلا",
+    "city": "الشيخ زايد",
+    "compound": "بالم هيلز",
+    "location": "الشيخ زايد - بالم هيلز",
+    "price_val": 16750000,
+    "price": "16,750,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 420,
+    "floor": null,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "أمن على مدار الساعة",
+      "مصعد",
+      "مسطحات خضراء",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 420 م² تضم 5 غرف نوم و5 حمام داخل بالم هيلز في الشيخ زايد. ومن مميزاتها أمن على مدار الساعة ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 13,
+    "title": "تاون هاوس مودرن في فوكا باي",
+    "type": "تاون هاوس",
+    "city": "الساحل الشمالي",
+    "compound": "فوكا باي",
+    "location": "الساحل الشمالي - فوكا باي",
+    "price_val": 18250000,
+    "price": "18,250,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 280,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "ملعب أطفال",
+      "غرفة خادمة",
+      "مسطحات خضراء",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "تاون هاوس بمساحة 280 م² تضم 3 غرف نوم و3 حمام داخل فوكا باي في الساحل الشمالي. ومن مميزاتها ملعب أطفال وغرفة خادمة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 14,
+    "title": "دوبلكس فاخر في سراي هليوبوليس",
+    "type": "دوبلكس",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 13800000,
+    "price": "13,800,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 275,
+    "floor": 5,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "نادي رياضي",
+      "تكييف مركزي",
+      "ملعب أطفال",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 275 م² تضم 5 غرف نوم و5 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها نادي رياضي وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 15,
+    "title": "شاليه جاهز للسكن في دي جويا",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "دي جويا",
+    "location": "الساحل الشمالي - دي جويا",
+    "price_val": 5350000,
+    "price": "5,350,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 105,
+    "floor": 9,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "شاطئ خاص",
+      "أمن على مدار الساعة",
+      "كريستال لاجون",
+      "نادي شاطئي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 105 م² تضم 2 غرف نوم و2 حمام داخل دي جويا في الساحل الشمالي. ومن مميزاتها شاطئ خاص وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 16,
+    "title": "شقة فاخرة في ميدتاون",
+    "type": "شقة",
+    "city": "العاصمة الإدارية",
+    "compound": "ميدتاون",
+    "location": "العاصمة الإدارية - ميدتاون",
+    "price_val": 4200000,
+    "price": "4,200,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 145,
+    "floor": 5,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "مصعد",
+      "جراج خاص",
+      "ملعب أطفال"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 145 م² تضم 2 غرف نوم و2 حمام داخل ميدتاون في العاصمة الإدارية. ومن مميزاتها مسطحات خضراء ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 17,
+    "title": "استوديو بموقع استراتيجي في الباتيو",
+    "type": "استوديو",
+    "city": "التجمع الخامس",
+    "compound": "الباتيو",
+    "location": "التجمع الخامس - الباتيو",
+    "price_val": 2950000,
+    "price": "2,950,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 70,
+    "floor": 11,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "جراج خاص",
+      "مصعد",
+      "تكييف مركزي",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 70 م² تضم 1 غرف نوم و1 حمام داخل الباتيو في التجمع الخامس. ومن مميزاتها جراج خاص ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 18,
+    "title": "فيلا راقية في جرين فالي",
+    "type": "فيلا",
+    "city": "الشروق",
+    "compound": "جرين فالي",
+    "location": "الشروق - جرين فالي",
+    "price_val": 16350000,
+    "price": "16,350,000",
+    "beds": 7,
+    "baths": 7,
+    "area": 480,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مصعد",
+      "جراج خاص",
+      "مسطحات خضراء",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 480 م² تضم 7 غرف نوم و7 حمام داخل جرين فالي في الشروق. ومن مميزاتها مصعد وجراج خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 19,
+    "title": "دوبلكس فاخر في ماونتن بارك",
+    "type": "دوبلكس",
+    "city": "مدينة نصر",
+    "compound": "ماونتن بارك",
+    "location": "مدينة نصر - ماونتن بارك",
+    "price_val": 11050000,
+    "price": "11,050,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 330,
+    "floor": 6,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "أمن على مدار الساعة",
+      "نادي رياضي",
+      "غرفة خادمة",
+      "ملعب أطفال"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 330 م² تضم 3 غرف نوم و3 حمام داخل ماونتن بارك في مدينة نصر. ومن مميزاتها أمن على مدار الساعة ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 20,
+    "title": "شقة جاهزة للسكن في فيلت",
+    "type": "شقة",
+    "city": "التجمع الخامس",
+    "compound": "فيلت",
+    "location": "التجمع الخامس - فيلت",
+    "price_val": 5850000,
+    "price": "5,850,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 160,
+    "floor": 11,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "نادي رياضي",
+      "حديقة خاصة",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 160 م² تضم 3 غرف نوم و3 حمام داخل فيلت في التجمع الخامس. ومن مميزاتها حمام سباحة ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 21,
+    "title": "شقة بموقع استراتيجي في هليوبوليس جاردنز",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "هليوبوليس جاردنز",
+    "location": "مصر الجديدة - هليوبوليس جاردنز",
+    "price_val": 3950000,
+    "price": "3,950,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 95,
+    "floor": 9,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "نادي رياضي",
+      "أمن على مدار الساعة",
+      "حديقة خاصة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 95 م² تضم 2 غرف نوم و2 حمام داخل هليوبوليس جاردنز في مصر الجديدة. ومن مميزاتها تكييف مركزي ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 22,
+    "title": "دوبلكس مودرن في سراي المعادي",
+    "type": "دوبلكس",
+    "city": "المعادي",
+    "compound": "سراي المعادي",
+    "location": "المعادي - سراي المعادي",
+    "price_val": 13850000,
+    "price": "13,850,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 295,
+    "floor": 6,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "ملعب أطفال",
+      "نادي رياضي",
+      "مصعد",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 295 م² تضم 3 غرف نوم و3 حمام داخل سراي المعادي في المعادي. ومن مميزاتها ملعب أطفال ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 23,
+    "title": "فيلا فاخرة في ذا فيو",
+    "type": "فيلا",
+    "city": "المعادي",
+    "compound": "ذا فيو",
+    "location": "المعادي - ذا فيو",
+    "price_val": 30350000,
+    "price": "30,350,000",
+    "beds": 7,
+    "baths": 7,
+    "area": 610,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "منطقة تجارية",
+      "جراج خاص",
+      "تكييف مركزي",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 610 م² تضم 7 غرف نوم و7 حمام داخل ذا فيو في المعادي. ومن مميزاتها منطقة تجارية وجراج خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 24,
+    "title": "دوبلكس بإطلالة مميزة في كابيتال جاردنز",
+    "type": "دوبلكس",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال جاردنز",
+    "location": "العاصمة الإدارية - كابيتال جاردنز",
+    "price_val": 11400000,
+    "price": "11,400,000",
+    "beds": 5,
+    "baths": 4,
+    "area": 300,
+    "floor": 9,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "حديقة خاصة",
+      "مسطحات خضراء",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 300 م² تضم 5 غرف نوم و4 حمام داخل كابيتال جاردنز في العاصمة الإدارية. ومن مميزاتها حمام سباحة وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 25,
+    "title": "شقة راقية في بادية",
+    "type": "شقة",
+    "city": "6 أكتوبر",
+    "compound": "بادية",
+    "location": "6 أكتوبر - بادية",
+    "price_val": 2950000,
+    "price": "2,950,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 115,
+    "floor": 5,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "جراج خاص",
+      "حديقة خاصة",
+      "حمام سباحة",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 115 م² تضم 4 غرف نوم و4 حمام داخل بادية في 6 أكتوبر. ومن مميزاتها جراج خاص وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 26,
+    "title": "دوبلكس مودرن في بالم هيلز",
+    "type": "دوبلكس",
+    "city": "الشيخ زايد",
+    "compound": "بالم هيلز",
+    "location": "الشيخ زايد - بالم هيلز",
+    "price_val": 12300000,
+    "price": "12,300,000",
+    "beds": 5,
+    "baths": 4,
+    "area": 305,
+    "floor": 3,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "تكييف مركزي",
+      "ملعب أطفال",
+      "نادي رياضي",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 305 م² تضم 5 غرف نوم و4 حمام داخل بالم هيلز في الشيخ زايد. ومن مميزاتها تكييف مركزي وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 27,
+    "title": "شقة بموقع استراتيجي في الباتيو",
+    "type": "شقة",
+    "city": "التجمع الخامس",
+    "compound": "الباتيو",
+    "location": "التجمع الخامس - الباتيو",
+    "price_val": 8450000,
+    "price": "8,450,000",
+    "beds": 4,
+    "baths": 3,
+    "area": 200,
+    "floor": 3,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "حمام سباحة",
+      "ملعب أطفال",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 200 م² تضم 4 غرف نوم و3 حمام داخل الباتيو في التجمع الخامس. ومن مميزاتها مسطحات خضراء وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 28,
+    "title": "استوديو راقٍ في بادية",
+    "type": "استوديو",
+    "city": "6 أكتوبر",
+    "compound": "بادية",
+    "location": "6 أكتوبر - بادية",
+    "price_val": 1450000,
+    "price": "1,450,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 50,
+    "floor": 10,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "منطقة تجارية",
+      "غرفة خادمة",
+      "أمن على مدار الساعة",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 50 م² تضم 1 غرف نوم و1 حمام داخل بادية في 6 أكتوبر. ومن مميزاتها منطقة تجارية وغرفة خادمة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 29,
+    "title": "شقة راقية في ميفيدا",
+    "type": "شقة",
+    "city": "التجمع الخامس",
+    "compound": "ميفيدا",
+    "location": "التجمع الخامس - ميفيدا",
+    "price_val": 8900000,
+    "price": "8,900,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 215,
+    "floor": 8,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "مصعد",
+      "ملعب أطفال",
+      "غرفة خادمة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 215 م² تضم 3 غرف نوم و3 حمام داخل ميفيدا في التجمع الخامس. ومن مميزاتها تكييف مركزي ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 30,
+    "title": "شقة بإطلالة مميزة في المعادي ريزيدنس",
+    "type": "شقة",
+    "city": "المعادي",
+    "compound": "المعادي ريزيدنس",
+    "location": "المعادي - المعادي ريزيدنس",
+    "price_val": 5950000,
+    "price": "5,950,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 130,
+    "floor": 11,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حديقة خاصة",
+      "مصعد",
+      "حمام سباحة",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 130 م² تضم 4 غرف نوم و4 حمام داخل المعادي ريزيدنس في المعادي. ومن مميزاتها حديقة خاصة ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 31,
+    "title": "فيلا بموقع استراتيجي في هاسيندا باي",
+    "type": "فيلا",
+    "city": "الساحل الشمالي",
+    "compound": "هاسيندا باي",
+    "location": "الساحل الشمالي - هاسيندا باي",
+    "price_val": 34550000,
+    "price": "34,550,000",
+    "beds": 6,
+    "baths": 6,
+    "area": 520,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "حمام سباحة",
+      "تكييف مركزي",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 520 م² تضم 6 غرف نوم و6 حمام داخل هاسيندا باي في الساحل الشمالي. ومن مميزاتها مسطحات خضراء وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 32,
+    "title": "تاون هاوس جاهز للسكن في كابيتال ريزيدنس",
+    "type": "تاون هاوس",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال ريزيدنس",
+    "location": "العاصمة الإدارية - كابيتال ريزيدنس",
+    "price_val": 9650000,
+    "price": "9,650,000",
+    "beds": 4,
+    "baths": 3,
+    "area": 270,
+    "floor": null,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مصعد",
+      "تكييف مركزي",
+      "أمن على مدار الساعة",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "تاون هاوس بمساحة 270 م² تضم 4 غرف نوم و3 حمام داخل كابيتال ريزيدنس في العاصمة الإدارية. ومن مميزاتها مصعد وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 33,
+    "title": "فيلا بإطلالة مميزة في هاسيندا باي",
+    "type": "فيلا",
+    "city": "الساحل الشمالي",
+    "compound": "هاسيندا باي",
+    "location": "الساحل الشمالي - هاسيندا باي",
+    "price_val": 38200000,
+    "price": "38,200,000",
+    "beds": 5,
+    "baths": 4,
+    "area": 575,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "تكييف مركزي",
+      "حديقة خاصة",
+      "مصعد",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 575 م² تضم 5 غرف نوم و4 حمام داخل هاسيندا باي في الساحل الشمالي. ومن مميزاتها تكييف مركزي وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 34,
+    "title": "شقة فاخرة في ماونتن بارك",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "ماونتن بارك",
+    "location": "مدينة نصر - ماونتن بارك",
+    "price_val": 6650000,
+    "price": "6,650,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 230,
+    "floor": 4,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "ملعب أطفال",
+      "مسطحات خضراء",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 230 م² تضم 3 غرف نوم و3 حمام داخل ماونتن بارك في مدينة نصر. ومن مميزاتها منطقة تجارية وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 35,
+    "title": "شقة فاخرة في ذا سكوير أكتوبر",
+    "type": "شقة",
+    "city": "6 أكتوبر",
+    "compound": "ذا سكوير أكتوبر",
+    "location": "6 أكتوبر - ذا سكوير أكتوبر",
+    "price_val": 3550000,
+    "price": "3,550,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 130,
+    "floor": 7,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "أمن على مدار الساعة",
+      "مصعد",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 130 م² تضم 3 غرف نوم و3 حمام داخل ذا سكوير أكتوبر في 6 أكتوبر. ومن مميزاتها مسطحات خضراء وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 36,
+    "title": "فيلا جاهزة للسكن في زيد ويست",
+    "type": "فيلا",
+    "city": "الشيخ زايد",
+    "compound": "زيد ويست",
+    "location": "الشيخ زايد - زيد ويست",
+    "price_val": 21600000,
+    "price": "21,600,000",
+    "beds": 6,
+    "baths": 6,
+    "area": 535,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "تكييف مركزي",
+      "مسطحات خضراء",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 535 م² تضم 6 غرف نوم و6 حمام داخل زيد ويست في الشيخ زايد. ومن مميزاتها منطقة تجارية وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 37,
+    "title": "فيلا فاخرة في فوكا باي",
+    "type": "فيلا",
+    "city": "الساحل الشمالي",
+    "compound": "فوكا باي",
+    "location": "الساحل الشمالي - فوكا باي",
+    "price_val": 40950000,
+    "price": "40,950,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 615,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "مسطحات خضراء",
+      "حمام سباحة",
+      "جراج خاص",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 615 م² تضم 5 غرف نوم و5 حمام داخل فوكا باي في الساحل الشمالي. ومن مميزاتها مسطحات خضراء وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 38,
+    "title": "شقة جاهزة للسكن في ذا سكوير أكتوبر",
+    "type": "شقة",
+    "city": "6 أكتوبر",
+    "compound": "ذا سكوير أكتوبر",
+    "location": "6 أكتوبر - ذا سكوير أكتوبر",
+    "price_val": 4400000,
+    "price": "4,400,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 170,
+    "floor": 4,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "ملعب أطفال",
+      "نادي رياضي",
+      "مسطحات خضراء",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 170 م² تضم 3 غرف نوم و3 حمام داخل ذا سكوير أكتوبر في 6 أكتوبر. ومن مميزاتها ملعب أطفال ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 39,
+    "title": "شاليه بموقع استراتيجي في أمواج",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "أمواج",
+    "location": "الساحل الشمالي - أمواج",
+    "price_val": 6300000,
+    "price": "6,300,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 105,
+    "floor": 9,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "أمن على مدار الساعة",
+      "حمام سباحة",
+      "كريستال لاجون",
+      "نادي شاطئي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 105 م² تضم 2 غرف نوم و2 حمام داخل أمواج في الساحل الشمالي. ومن مميزاتها أمن على مدار الساعة وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 40,
+    "title": "شقة بموقع استراتيجي في بالم هيلز",
+    "type": "شقة",
+    "city": "الشيخ زايد",
+    "compound": "بالم هيلز",
+    "location": "الشيخ زايد - بالم هيلز",
+    "price_val": 4200000,
+    "price": "4,200,000",
+    "beds": 4,
+    "baths": 3,
+    "area": 115,
+    "floor": 3,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "مسطحات خضراء",
+      "نادي رياضي",
+      "حديقة خاصة",
+      "غرفة خادمة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 115 م² تضم 4 غرف نوم و3 حمام داخل بالم هيلز في الشيخ زايد. ومن مميزاتها مسطحات خضراء ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 41,
+    "title": "شقة بموقع استراتيجي في بالم هيلز",
+    "type": "شقة",
+    "city": "الشيخ زايد",
+    "compound": "بالم هيلز",
+    "location": "الشيخ زايد - بالم هيلز",
+    "price_val": 7000000,
+    "price": "7,000,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 200,
+    "floor": 2,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "ملعب أطفال",
+      "جراج خاص",
+      "مسطحات خضراء",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 200 م² تضم 2 غرف نوم و2 حمام داخل بالم هيلز في الشيخ زايد. ومن مميزاتها ملعب أطفال وجراج خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 42,
+    "title": "شقة فاخرة في الشروق هايتس",
+    "type": "شقة",
+    "city": "الشروق",
+    "compound": "الشروق هايتس",
+    "location": "الشروق - الشروق هايتس",
+    "price_val": 3550000,
+    "price": "3,550,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 145,
+    "floor": 4,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "حديقة خاصة",
+      "مسطحات خضراء",
+      "غرفة خادمة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 145 م² تضم 2 غرف نوم و1 حمام داخل الشروق هايتس في الشروق. ومن مميزاتها تكييف مركزي وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 43,
+    "title": "تاون هاوس جاهز للسكن في مراسي",
+    "type": "تاون هاوس",
+    "city": "الساحل الشمالي",
+    "compound": "مراسي",
+    "location": "الساحل الشمالي - مراسي",
+    "price_val": 20550000,
+    "price": "20,550,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 340,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "تكييف مركزي",
+      "نادي رياضي",
+      "ملعب أطفال",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "تاون هاوس بمساحة 340 م² تضم 3 غرف نوم و3 حمام داخل مراسي في الساحل الشمالي. ومن مميزاتها تكييف مركزي ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 44,
+    "title": "شقة جاهزة للسكن في ماونتن بارك",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "ماونتن بارك",
+    "location": "مدينة نصر - ماونتن بارك",
+    "price_val": 6200000,
+    "price": "6,200,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 210,
+    "floor": 12,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "حمام سباحة",
+      "أمن على مدار الساعة",
+      "حديقة خاصة",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 210 م² تضم 3 غرف نوم و3 حمام داخل ماونتن بارك في مدينة نصر. ومن مميزاتها حمام سباحة وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 45,
+    "title": "فيلا بإطلالة مميزة في زيد ويست",
+    "type": "فيلا",
+    "city": "الشيخ زايد",
+    "compound": "زيد ويست",
+    "location": "الشيخ زايد - زيد ويست",
+    "price_val": 18800000,
+    "price": "18,800,000",
+    "beds": 7,
+    "baths": 6,
+    "area": 440,
+    "floor": null,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "غرفة خادمة",
+      "مسطحات خضراء",
+      "حديقة خاصة",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 440 م² تضم 7 غرف نوم و6 حمام داخل زيد ويست في الشيخ زايد. ومن مميزاتها غرفة خادمة ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 46,
+    "title": "دوبلكس راقٍ في سراي هليوبوليس",
+    "type": "دوبلكس",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 9600000,
+    "price": "9,600,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 210,
+    "floor": 8,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "مصعد",
+      "حديقة خاصة",
+      "جراج خاص",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 210 م² تضم 3 غرف نوم و3 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها مصعد وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 47,
+    "title": "شقة جاهزة للسكن في المعادي ريزيدنس",
+    "type": "شقة",
+    "city": "المعادي",
+    "compound": "المعادي ريزيدنس",
+    "location": "المعادي - المعادي ريزيدنس",
+    "price_val": 6150000,
+    "price": "6,150,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 140,
+    "floor": 8,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "حديقة خاصة",
+      "أمن على مدار الساعة",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 140 م² تضم 2 غرف نوم و1 حمام داخل المعادي ريزيدنس في المعادي. ومن مميزاتها منطقة تجارية وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 48,
+    "title": "شاليه بموقع استراتيجي في فوكا باي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "فوكا باي",
+    "location": "الساحل الشمالي - فوكا باي",
+    "price_val": 5750000,
+    "price": "5,750,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 105,
+    "floor": 12,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "شاطئ خاص",
+      "نادي شاطئي",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 105 م² تضم 2 غرف نوم و1 حمام داخل فوكا باي في الساحل الشمالي. ومن مميزاتها حمام سباحة وشاطئ خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 49,
+    "title": "شقة بإطلالة مميزة في نصر ريزيدنس",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "نصر ريزيدنس",
+    "location": "مدينة نصر - نصر ريزيدنس",
+    "price_val": 4450000,
+    "price": "4,450,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 130,
+    "floor": 3,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "ملعب أطفال",
+      "تكييف مركزي",
+      "مصعد",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 130 م² تضم 3 غرف نوم و3 حمام داخل نصر ريزيدنس في مدينة نصر. ومن مميزاتها ملعب أطفال وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 50,
+    "title": "شقة مودرن في زيد ويست",
+    "type": "شقة",
+    "city": "الشيخ زايد",
+    "compound": "زيد ويست",
+    "location": "الشيخ زايد - زيد ويست",
+    "price_val": 6300000,
+    "price": "6,300,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 185,
+    "floor": 9,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "مصعد",
+      "جراج خاص",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 185 م² تضم 3 غرف نوم و3 حمام داخل زيد ويست في الشيخ زايد. ومن مميزاتها حمام سباحة ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 51,
+    "title": "استوديو بإطلالة مميزة في كابيتال ريزيدنس",
+    "type": "استوديو",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال ريزيدنس",
+    "location": "العاصمة الإدارية - كابيتال ريزيدنس",
+    "price_val": 1600000,
+    "price": "1,600,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 45,
+    "floor": 2,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "حمام سباحة",
+      "أمن على مدار الساعة",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 45 م² تضم 1 غرف نوم و1 حمام داخل كابيتال ريزيدنس في العاصمة الإدارية. ومن مميزاتها تكييف مركزي وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 52,
+    "title": "شاليه مودرن في مراسي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "مراسي",
+    "location": "الساحل الشمالي - مراسي",
+    "price_val": 6900000,
+    "price": "6,900,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 115,
+    "floor": 12,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "أمن على مدار الساعة",
+      "شاطئ خاص",
+      "كريستال لاجون"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 115 م² تضم 2 غرف نوم و2 حمام داخل مراسي في الساحل الشمالي. ومن مميزاتها حمام سباحة وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 53,
+    "title": "شقة فاخرة في سراي هليوبوليس",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 9350000,
+    "price": "9,350,000",
+    "beds": 3,
+    "baths": 2,
+    "area": 205,
+    "floor": 2,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "غرفة خادمة",
+      "منطقة تجارية",
+      "جراج خاص",
+      "مسطحات خضراء"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 205 م² تضم 3 غرف نوم و2 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها غرفة خادمة ومنطقة تجارية، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 54,
+    "title": "دوبلكس بإطلالة مميزة في كابيتال ريزيدنس",
+    "type": "دوبلكس",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال ريزيدنس",
+    "location": "العاصمة الإدارية - كابيتال ريزيدنس",
+    "price_val": 10850000,
+    "price": "10,850,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 290,
+    "floor": 9,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "ملعب أطفال",
+      "نادي رياضي",
+      "غرفة خادمة",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 290 م² تضم 3 غرف نوم و3 حمام داخل كابيتال ريزيدنس في العاصمة الإدارية. ومن مميزاتها ملعب أطفال ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 55,
+    "title": "استوديو مودرن في ميدتاون",
+    "type": "استوديو",
+    "city": "العاصمة الإدارية",
+    "compound": "ميدتاون",
+    "location": "العاصمة الإدارية - ميدتاون",
+    "price_val": 1400000,
+    "price": "1,400,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 50,
+    "floor": 4,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "أمن على مدار الساعة",
+      "منطقة تجارية",
+      "نادي رياضي",
+      "ملعب أطفال"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 50 م² تضم 1 غرف نوم و1 حمام داخل ميدتاون في العاصمة الإدارية. ومن مميزاتها أمن على مدار الساعة ومنطقة تجارية، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 56,
+    "title": "شقة جاهزة للسكن في المعادي ريزيدنس",
+    "type": "شقة",
+    "city": "المعادي",
+    "compound": "المعادي ريزيدنس",
+    "location": "المعادي - المعادي ريزيدنس",
+    "price_val": 4050000,
+    "price": "4,050,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 105,
+    "floor": 3,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "ملعب أطفال",
+      "حمام سباحة",
+      "منطقة تجارية",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 105 م² تضم 2 غرف نوم و2 حمام داخل المعادي ريزيدنس في المعادي. ومن مميزاتها ملعب أطفال وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 57,
+    "title": "شاليه جاهز للسكن في هاسيندا باي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "هاسيندا باي",
+    "location": "الساحل الشمالي - هاسيندا باي",
+    "price_val": 8450000,
+    "price": "8,450,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 145,
+    "floor": 2,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "أمن على مدار الساعة",
+      "حمام سباحة",
+      "شاطئ خاص",
+      "نادي شاطئي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 145 م² تضم 2 غرف نوم و2 حمام داخل هاسيندا باي في الساحل الشمالي. ومن مميزاتها أمن على مدار الساعة وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 58,
+    "title": "شقة جاهزة للسكن في هليوبوليس جاردنز",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "هليوبوليس جاردنز",
+    "location": "مصر الجديدة - هليوبوليس جاردنز",
+    "price_val": 6400000,
+    "price": "6,400,000",
+    "beds": 4,
+    "baths": 3,
+    "area": 140,
+    "floor": 10,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "نادي رياضي",
+      "منطقة تجارية",
+      "أمن على مدار الساعة",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 140 م² تضم 4 غرف نوم و3 حمام داخل هليوبوليس جاردنز في مصر الجديدة. ومن مميزاتها نادي رياضي ومنطقة تجارية، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 59,
+    "title": "شقة بإطلالة مميزة في سوديك وست",
+    "type": "شقة",
+    "city": "الشيخ زايد",
+    "compound": "سوديك وست",
+    "location": "الشيخ زايد - سوديك وست",
+    "price_val": 5850000,
+    "price": "5,850,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 190,
+    "floor": 1,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "منطقة تجارية",
+      "حديقة خاصة",
+      "مسطحات خضراء",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 190 م² تضم 4 غرف نوم و4 حمام داخل سوديك وست في الشيخ زايد. ومن مميزاتها منطقة تجارية وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 60,
+    "title": "شاليه جاهز للسكن في مراسي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "مراسي",
+    "location": "الساحل الشمالي - مراسي",
+    "price_val": 8250000,
+    "price": "8,250,000",
+    "beds": 3,
+    "baths": 2,
+    "area": 135,
+    "floor": 8,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "نادي شاطئي",
+      "حمام سباحة",
+      "كريستال لاجون",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 135 م² تضم 3 غرف نوم و2 حمام داخل مراسي في الساحل الشمالي. ومن مميزاتها نادي شاطئي وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 61,
+    "title": "شقة فاخرة في هليوبوليس جاردنز",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "هليوبوليس جاردنز",
+    "location": "مصر الجديدة - هليوبوليس جاردنز",
+    "price_val": 7250000,
+    "price": "7,250,000",
+    "beds": 4,
+    "baths": 3,
+    "area": 190,
+    "floor": 3,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "مصعد",
+      "حمام سباحة",
+      "تكييف مركزي",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 190 م² تضم 4 غرف نوم و3 حمام داخل هليوبوليس جاردنز في مصر الجديدة. ومن مميزاتها مصعد وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 62,
+    "title": "شقة مودرن في الشروق هايتس",
+    "type": "شقة",
+    "city": "الشروق",
+    "compound": "الشروق هايتس",
+    "location": "الشروق - الشروق هايتس",
+    "price_val": 5150000,
+    "price": "5,150,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 190,
+    "floor": 5,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مصعد",
+      "مسطحات خضراء",
+      "تكييف مركزي",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 190 م² تضم 4 غرف نوم و4 حمام داخل الشروق هايتس في الشروق. ومن مميزاتها مصعد ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 63,
+    "title": "شقة بموقع استراتيجي في نصر ريزيدنس",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "نصر ريزيدنس",
+    "location": "مدينة نصر - نصر ريزيدنس",
+    "price_val": 3900000,
+    "price": "3,900,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 120,
+    "floor": 9,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "جراج خاص",
+      "مسطحات خضراء",
+      "حديقة خاصة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 120 م² تضم 3 غرف نوم و3 حمام داخل نصر ريزيدنس في مدينة نصر. ومن مميزاتها منطقة تجارية وجراج خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 64,
+    "title": "شقة بإطلالة مميزة في سراي هليوبوليس",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 9750000,
+    "price": "9,750,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 220,
+    "floor": 7,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مصعد",
+      "ملعب أطفال",
+      "حمام سباحة",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 220 م² تضم 4 غرف نوم و4 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها مصعد وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 65,
+    "title": "شقة مودرن في سراي هليوبوليس",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "سراي هليوبوليس",
+    "location": "مصر الجديدة - سراي هليوبوليس",
+    "price_val": 5550000,
+    "price": "5,550,000",
+    "beds": 4,
+    "baths": 3,
+    "area": 150,
+    "floor": 4,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "حديقة خاصة",
+      "مصعد",
+      "غرفة خادمة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 150 م² تضم 4 غرف نوم و3 حمام داخل سراي هليوبوليس في مصر الجديدة. ومن مميزاتها منطقة تجارية وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 66,
+    "title": "شقة راقية في سوان ليك",
+    "type": "شقة",
+    "city": "التجمع الخامس",
+    "compound": "سوان ليك",
+    "location": "التجمع الخامس - سوان ليك",
+    "price_val": 3900000,
+    "price": "3,900,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 110,
+    "floor": 2,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "ملعب أطفال",
+      "أمن على مدار الساعة",
+      "مصعد",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 110 م² تضم 2 غرف نوم و2 حمام داخل سوان ليك في التجمع الخامس. ومن مميزاتها ملعب أطفال وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 67,
+    "title": "شقة فاخرة في نصر ريزيدنس",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "نصر ريزيدنس",
+    "location": "مدينة نصر - نصر ريزيدنس",
+    "price_val": 6600000,
+    "price": "6,600,000",
+    "beds": 3,
+    "baths": 2,
+    "area": 195,
+    "floor": 4,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "ملعب أطفال",
+      "منطقة تجارية",
+      "تكييف مركزي",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 195 م² تضم 3 غرف نوم و2 حمام داخل نصر ريزيدنس في مدينة نصر. ومن مميزاتها ملعب أطفال ومنطقة تجارية، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 68,
+    "title": "شاليه بإطلالة مميزة في دي جويا",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "دي جويا",
+    "location": "الساحل الشمالي - دي جويا",
+    "price_val": 7450000,
+    "price": "7,450,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 150,
+    "floor": 12,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "شاطئ خاص",
+      "نادي شاطئي",
+      "كريستال لاجون",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 150 م² تضم 2 غرف نوم و1 حمام داخل دي جويا في الساحل الشمالي. ومن مميزاتها شاطئ خاص ونادي شاطئي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 69,
+    "title": "دوبلكس مودرن في الربوة",
+    "type": "دوبلكس",
+    "city": "6 أكتوبر",
+    "compound": "الربوة",
+    "location": "6 أكتوبر - الربوة",
+    "price_val": 7050000,
+    "price": "7,050,000",
+    "beds": 5,
+    "baths": 4,
+    "area": 255,
+    "floor": 10,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "مصعد",
+      "أمن على مدار الساعة",
+      "تكييف مركزي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 255 م² تضم 5 غرف نوم و4 حمام داخل الربوة في 6 أكتوبر. ومن مميزاتها حمام سباحة ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 70,
+    "title": "استوديو بموقع استراتيجي في كابيتال جاردنز",
+    "type": "استوديو",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال جاردنز",
+    "location": "العاصمة الإدارية - كابيتال جاردنز",
+    "price_val": 1900000,
+    "price": "1,900,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 60,
+    "floor": 5,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "حديقة خاصة",
+      "مسطحات خضراء",
+      "تكييف مركزي",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 60 م² تضم 1 غرف نوم و1 حمام داخل كابيتال جاردنز في العاصمة الإدارية. ومن مميزاتها حديقة خاصة ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 71,
+    "title": "شقة مودرن في ماونتن بارك",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "ماونتن بارك",
+    "location": "مدينة نصر - ماونتن بارك",
+    "price_val": 5300000,
+    "price": "5,300,000",
+    "beds": 3,
+    "baths": 2,
+    "area": 160,
+    "floor": 10,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "منطقة تجارية",
+      "مسطحات خضراء",
+      "مصعد",
+      "حديقة خاصة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 160 م² تضم 3 غرف نوم و2 حمام داخل ماونتن بارك في مدينة نصر. ومن مميزاتها منطقة تجارية ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 72,
+    "title": "فيلا جاهزة للسكن في بيفرلي هيلز",
+    "type": "فيلا",
+    "city": "الشيخ زايد",
+    "compound": "بيفرلي هيلز",
+    "location": "الشيخ زايد - بيفرلي هيلز",
+    "price_val": 19150000,
+    "price": "19,150,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 515,
+    "floor": null,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حديقة خاصة",
+      "تكييف مركزي",
+      "غرفة خادمة",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 515 م² تضم 4 غرف نوم و4 حمام داخل بيفرلي هيلز في الشيخ زايد. ومن مميزاتها حديقة خاصة وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 73,
+    "title": "دوبلكس راقٍ في ميراج الشروق",
+    "type": "دوبلكس",
+    "city": "الشروق",
+    "compound": "ميراج الشروق",
+    "location": "الشروق - ميراج الشروق",
+    "price_val": 8700000,
+    "price": "8,700,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 295,
+    "floor": 7,
+    "finishing": "تشطيب كامل",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "منطقة تجارية",
+      "حديقة خاصة",
+      "تكييف مركزي",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 295 م² تضم 3 غرف نوم و3 حمام داخل ميراج الشروق في الشروق. ومن مميزاتها منطقة تجارية وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 74,
+    "title": "بنتهاوس فاخر في الحي الراقي",
+    "type": "بنتهاوس",
+    "city": "مدينة نصر",
+    "compound": "الحي الراقي",
+    "location": "مدينة نصر - الحي الراقي",
+    "price_val": 12800000,
+    "price": "12,800,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 325,
+    "floor": 7,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "ملعب أطفال",
+      "حديقة خاصة",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "بنتهاوس بمساحة 325 م² تضم 4 غرف نوم و4 حمام داخل الحي الراقي في مدينة نصر. ومن مميزاتها مسطحات خضراء وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 75,
+    "title": "شقة فاخرة في سراي المعادي",
+    "type": "شقة",
+    "city": "المعادي",
+    "compound": "سراي المعادي",
+    "location": "المعادي - سراي المعادي",
+    "price_val": 4850000,
+    "price": "4,850,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 125,
+    "floor": 9,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "حديقة خاصة",
+      "ملعب أطفال",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 125 م² تضم 2 غرف نوم و1 حمام داخل سراي المعادي في المعادي. ومن مميزاتها تكييف مركزي وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 76,
+    "title": "شقة بإطلالة مميزة في ميدتاون",
+    "type": "شقة",
+    "city": "العاصمة الإدارية",
+    "compound": "ميدتاون",
+    "location": "العاصمة الإدارية - ميدتاون",
+    "price_val": 4400000,
+    "price": "4,400,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 130,
+    "floor": 12,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "حديقة خاصة",
+      "مصعد",
+      "جراج خاص",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 130 م² تضم 2 غرف نوم و1 حمام داخل ميدتاون في العاصمة الإدارية. ومن مميزاتها حديقة خاصة ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 77,
+    "title": "شقة بموقع استراتيجي في نصر ريزيدنس",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "نصر ريزيدنس",
+    "location": "مدينة نصر - نصر ريزيدنس",
+    "price_val": 4550000,
+    "price": "4,550,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 150,
+    "floor": 1,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "نادي رياضي",
+      "غرفة خادمة",
+      "حديقة خاصة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 150 م² تضم 4 غرف نوم و4 حمام داخل نصر ريزيدنس في مدينة نصر. ومن مميزاتها مسطحات خضراء ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 78,
+    "title": "تاون هاوس راقٍ في أمواج",
+    "type": "تاون هاوس",
+    "city": "الساحل الشمالي",
+    "compound": "أمواج",
+    "location": "الساحل الشمالي - أمواج",
+    "price_val": 19400000,
+    "price": "19,400,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 280,
+    "floor": null,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "أمن على مدار الساعة",
+      "نادي رياضي",
+      "مصعد",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "تاون هاوس بمساحة 280 م² تضم 5 غرف نوم و5 حمام داخل أمواج في الساحل الشمالي. ومن مميزاتها أمن على مدار الساعة ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 79,
+    "title": "شقة راقية في كابيتال ريزيدنس",
+    "type": "شقة",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال ريزيدنس",
+    "location": "العاصمة الإدارية - كابيتال ريزيدنس",
+    "price_val": 4000000,
+    "price": "4,000,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 140,
+    "floor": 2,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "مصعد",
+      "أمن على مدار الساعة",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 140 م² تضم 2 غرف نوم و1 حمام داخل كابيتال ريزيدنس في العاصمة الإدارية. ومن مميزاتها تكييف مركزي ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 80,
+    "title": "شاليه بإطلالة مميزة في فوكا باي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "فوكا باي",
+    "location": "الساحل الشمالي - فوكا باي",
+    "price_val": 7100000,
+    "price": "7,100,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 125,
+    "floor": 3,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "أمن على مدار الساعة",
+      "شاطئ خاص",
+      "حمام سباحة",
+      "نادي شاطئي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 125 م² تضم 2 غرف نوم و2 حمام داخل فوكا باي في الساحل الشمالي. ومن مميزاتها أمن على مدار الساعة وشاطئ خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 81,
+    "title": "فيلا جاهزة للسكن في سوديك وست",
+    "type": "فيلا",
+    "city": "الشيخ زايد",
+    "compound": "سوديك وست",
+    "location": "الشيخ زايد - سوديك وست",
+    "price_val": 23100000,
+    "price": "23,100,000",
+    "beds": 6,
+    "baths": 6,
+    "area": 565,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "نادي رياضي",
+      "تكييف مركزي",
+      "منطقة تجارية",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 565 م² تضم 6 غرف نوم و6 حمام داخل سوديك وست في الشيخ زايد. ومن مميزاتها نادي رياضي وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 82,
+    "title": "شقة جاهزة للسكن في ماونتن بارك",
+    "type": "شقة",
+    "city": "مدينة نصر",
+    "compound": "ماونتن بارك",
+    "location": "مدينة نصر - ماونتن بارك",
+    "price_val": 4900000,
+    "price": "4,900,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 150,
+    "floor": 5,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "نادي رياضي",
+      "مسطحات خضراء",
+      "منطقة تجارية",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 150 م² تضم 2 غرف نوم و2 حمام داخل ماونتن بارك في مدينة نصر. ومن مميزاتها نادي رياضي ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 83,
+    "title": "استوديو فاخر في كابيتال جاردنز",
+    "type": "استوديو",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال جاردنز",
+    "location": "العاصمة الإدارية - كابيتال جاردنز",
+    "price_val": 2450000,
+    "price": "2,450,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 80,
+    "floor": 4,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "جراج خاص",
+      "أمن على مدار الساعة",
+      "مسطحات خضراء",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 80 م² تضم 1 غرف نوم و1 حمام داخل كابيتال جاردنز في العاصمة الإدارية. ومن مميزاتها جراج خاص وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 84,
+    "title": "تاون هاوس فاخر في هايد بارك",
+    "type": "تاون هاوس",
+    "city": "التجمع الخامس",
+    "compound": "هايد بارك",
+    "location": "التجمع الخامس - هايد بارك",
+    "price_val": 8450000,
+    "price": "8,450,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 210,
+    "floor": null,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "ملعب أطفال",
+      "مصعد",
+      "تكييف مركزي",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "تاون هاوس بمساحة 210 م² تضم 5 غرف نوم و5 حمام داخل هايد بارك في التجمع الخامس. ومن مميزاتها ملعب أطفال ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 85,
+    "title": "استوديو بموقع استراتيجي في جرين هيلز",
+    "type": "استوديو",
+    "city": "6 أكتوبر",
+    "compound": "جرين هيلز",
+    "location": "6 أكتوبر - جرين هيلز",
+    "price_val": 1150000,
+    "price": "1,150,000",
+    "beds": 1,
+    "baths": 1,
+    "area": 45,
+    "floor": 11,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2029",
+    "features": [
+      "غرفة خادمة",
+      "ملعب أطفال",
+      "تكييف مركزي",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "استوديو بمساحة 45 م² تضم 1 غرف نوم و1 حمام داخل جرين هيلز في 6 أكتوبر. ومن مميزاتها غرفة خادمة وملعب أطفال، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 86,
+    "title": "شاليه فاخر في دي جويا",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "دي جويا",
+    "location": "الساحل الشمالي - دي جويا",
+    "price_val": 5550000,
+    "price": "5,550,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 90,
+    "floor": 4,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "شاطئ خاص",
+      "حمام سباحة",
+      "أمن على مدار الساعة",
+      "كريستال لاجون"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 90 م² تضم 3 غرف نوم و3 حمام داخل دي جويا في الساحل الشمالي. ومن مميزاتها شاطئ خاص وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 87,
+    "title": "شقة مودرن في ميدتاون",
+    "type": "شقة",
+    "city": "العاصمة الإدارية",
+    "compound": "ميدتاون",
+    "location": "العاصمة الإدارية - ميدتاون",
+    "price_val": 5450000,
+    "price": "5,450,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 200,
+    "floor": 5,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "تكييف مركزي",
+      "نادي رياضي",
+      "مصعد",
+      "حديقة خاصة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 200 م² تضم 2 غرف نوم و1 حمام داخل ميدتاون في العاصمة الإدارية. ومن مميزاتها تكييف مركزي ونادي رياضي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 88,
+    "title": "بنتهاوس راقٍ في المعادي ريزيدنس",
+    "type": "بنتهاوس",
+    "city": "المعادي",
+    "compound": "المعادي ريزيدنس",
+    "location": "المعادي - المعادي ريزيدنس",
+    "price_val": 18600000,
+    "price": "18,600,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 345,
+    "floor": 12,
+    "finishing": "سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "تكييف مركزي",
+      "حمام سباحة",
+      "ملعب أطفال",
+      "منطقة تجارية"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "بنتهاوس بمساحة 345 م² تضم 4 غرف نوم و4 حمام داخل المعادي ريزيدنس في المعادي. ومن مميزاتها تكييف مركزي وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 89,
+    "title": "دوبلكس بإطلالة مميزة في ماونتن بارك",
+    "type": "دوبلكس",
+    "city": "مدينة نصر",
+    "compound": "ماونتن بارك",
+    "location": "مدينة نصر - ماونتن بارك",
+    "price_val": 6650000,
+    "price": "6,650,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 200,
+    "floor": 1,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "غرفة خادمة",
+      "مسطحات خضراء",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "دوبلكس بمساحة 200 م² تضم 3 غرف نوم و3 حمام داخل ماونتن بارك في مدينة نصر. ومن مميزاتها حمام سباحة وغرفة خادمة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 90,
+    "title": "شقة جاهزة للسكن في هليوبوليس جاردنز",
+    "type": "شقة",
+    "city": "مصر الجديدة",
+    "compound": "هليوبوليس جاردنز",
+    "location": "مصر الجديدة - هليوبوليس جاردنز",
+    "price_val": 8650000,
+    "price": "8,650,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 195,
+    "floor": 2,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "أمن على مدار الساعة",
+      "مصعد",
+      "ملعب أطفال",
+      "حديقة خاصة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 195 م² تضم 2 غرف نوم و2 حمام داخل هليوبوليس جاردنز في مصر الجديدة. ومن مميزاتها أمن على مدار الساعة ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 91,
+    "title": "شقة بموقع استراتيجي في الشروق هايتس",
+    "type": "شقة",
+    "city": "الشروق",
+    "compound": "الشروق هايتس",
+    "location": "الشروق - الشروق هايتس",
+    "price_val": 4750000,
+    "price": "4,750,000",
+    "beds": 2,
+    "baths": 2,
+    "area": 205,
+    "floor": 1,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حديقة خاصة",
+      "تكييف مركزي",
+      "حمام سباحة",
+      "مسطحات خضراء"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 205 م² تضم 2 غرف نوم و2 حمام داخل الشروق هايتس في الشروق. ومن مميزاتها حديقة خاصة وتكييف مركزي، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 92,
+    "title": "فيلا بإطلالة مميزة في جرين هيلز",
+    "type": "فيلا",
+    "city": "6 أكتوبر",
+    "compound": "جرين هيلز",
+    "location": "6 أكتوبر - جرين هيلز",
+    "price_val": 17550000,
+    "price": "17,550,000",
+    "beds": 7,
+    "baths": 6,
+    "area": 495,
+    "floor": null,
+    "finishing": "تشطيب كامل",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "مسطحات خضراء",
+      "مصعد",
+      "جراج خاص",
+      "نادي رياضي"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 495 م² تضم 7 غرف نوم و6 حمام داخل جرين هيلز في 6 أكتوبر. ومن مميزاتها مسطحات خضراء ومصعد، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 93,
+    "title": "شاليه بإطلالة مميزة في دي جويا",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "دي جويا",
+    "location": "الساحل الشمالي - دي جويا",
+    "price_val": 5250000,
+    "price": "5,250,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 85,
+    "floor": 10,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "حمام سباحة",
+      "كريستال لاجون",
+      "شاطئ خاص",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 85 م² تضم 2 غرف نوم و1 حمام داخل دي جويا في الساحل الشمالي. ومن مميزاتها حمام سباحة وكريستال لاجون، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 94,
+    "title": "شاليه راقٍ في مراسي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "مراسي",
+    "location": "الساحل الشمالي - مراسي",
+    "price_val": 6600000,
+    "price": "6,600,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 105,
+    "floor": 8,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "نادي شاطئي",
+      "شاطئ خاص",
+      "أمن على مدار الساعة",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 105 م² تضم 3 غرف نوم و3 حمام داخل مراسي في الساحل الشمالي. ومن مميزاتها نادي شاطئي وشاطئ خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 95,
+    "title": "تاون هاوس فاخر في الشروق هايتس",
+    "type": "تاون هاوس",
+    "city": "الشروق",
+    "compound": "الشروق هايتس",
+    "location": "الشروق - الشروق هايتس",
+    "price_val": 10750000,
+    "price": "10,750,000",
+    "beds": 4,
+    "baths": 4,
+    "area": 350,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "مصعد",
+      "حمام سباحة",
+      "تكييف مركزي",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "تاون هاوس بمساحة 350 م² تضم 4 غرف نوم و4 حمام داخل الشروق هايتس في الشروق. ومن مميزاتها مصعد وحمام سباحة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 96,
+    "title": "شقة مودرن في كابيتال جاردنز",
+    "type": "شقة",
+    "city": "العاصمة الإدارية",
+    "compound": "كابيتال جاردنز",
+    "location": "العاصمة الإدارية - كابيتال جاردنز",
+    "price_val": 3150000,
+    "price": "3,150,000",
+    "beds": 3,
+    "baths": 2,
+    "area": 100,
+    "floor": 2,
+    "finishing": "نصف تشطيب",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "جراج خاص",
+      "مسطحات خضراء",
+      "نادي رياضي",
+      "مصعد"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 100 م² تضم 3 غرف نوم و2 حمام داخل كابيتال جاردنز في العاصمة الإدارية. ومن مميزاتها جراج خاص ومسطحات خضراء، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 97,
+    "title": "فيلا مودرن في فوكا باي",
+    "type": "فيلا",
+    "city": "الساحل الشمالي",
+    "compound": "فوكا باي",
+    "location": "الساحل الشمالي - فوكا باي",
+    "price_val": 27200000,
+    "price": "27,200,000",
+    "beds": 5,
+    "baths": 4,
+    "area": 430,
+    "floor": null,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2028",
+    "features": [
+      "منطقة تجارية",
+      "جراج خاص",
+      "ملعب أطفال",
+      "أمن على مدار الساعة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 430 م² تضم 5 غرف نوم و4 حمام داخل فوكا باي في الساحل الشمالي. ومن مميزاتها منطقة تجارية وجراج خاص، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 98,
+    "title": "فيلا مودرن في أمواج",
+    "type": "فيلا",
+    "city": "الساحل الشمالي",
+    "compound": "أمواج",
+    "location": "الساحل الشمالي - أمواج",
+    "price_val": 31000000,
+    "price": "31,000,000",
+    "beds": 5,
+    "baths": 5,
+    "area": 430,
+    "floor": null,
+    "finishing": "ألترا سوبر لوكس",
+    "status": "جاهز للتسليم",
+    "delivery": "فوري",
+    "features": [
+      "حمام سباحة",
+      "غرفة خادمة",
+      "منطقة تجارية",
+      "جراج خاص"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "فيلا بمساحة 430 م² تضم 5 غرف نوم و5 حمام داخل أمواج في الساحل الشمالي. ومن مميزاتها حمام سباحة وغرفة خادمة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 99,
+    "title": "شاليه راقٍ في فوكا باي",
+    "type": "شاليه",
+    "city": "الساحل الشمالي",
+    "compound": "فوكا باي",
+    "location": "الساحل الشمالي - فوكا باي",
+    "price_val": 6200000,
+    "price": "6,200,000",
+    "beds": 2,
+    "baths": 1,
+    "area": 100,
+    "floor": 1,
+    "finishing": "نصف تشطيب",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "نادي شاطئي",
+      "أمن على مدار الساعة",
+      "كريستال لاجون",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شاليه بمساحة 100 م² تضم 2 غرف نوم و1 حمام داخل فوكا باي في الساحل الشمالي. ومن مميزاتها نادي شاطئي وأمن على مدار الساعة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  },
+  {
+    "id": 100,
+    "title": "شقة راقية في المعادي ريزيدنس",
+    "type": "شقة",
+    "city": "المعادي",
+    "compound": "المعادي ريزيدنس",
+    "location": "المعادي - المعادي ريزيدنس",
+    "price_val": 4650000,
+    "price": "4,650,000",
+    "beds": 3,
+    "baths": 3,
+    "area": 110,
+    "floor": 2,
+    "finishing": "سوبر لوكس",
+    "status": "تحت الإنشاء",
+    "delivery": "2027",
+    "features": [
+      "تكييف مركزي",
+      "حديقة خاصة",
+      "منطقة تجارية",
+      "حمام سباحة"
+    ],
+    "main_image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "desc": "شقة بمساحة 110 م² تضم 3 غرف نوم و3 حمام داخل المعادي ريزيدنس في المعادي. ومن مميزاتها تكييف مركزي وحديقة خاصة، مع إمكانية السداد على أقساط تصل إلى 8 سنوات."
+  }
+]

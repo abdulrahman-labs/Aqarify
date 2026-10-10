@@ -1,0 +1,23 @@
+# أسرار ومفاتيح (لا ترفعها أبداً)
+.env
+.streamlit/secrets.toml
+
+# بيانات العملاء (أرقام هواتف حقيقية)
+data/tickets.json
+
+# نسخ احتياطية وملفات مؤقتة
+data/*.backup.json
+data/*.tmp
+
+# بايثون وبيئات التشغيل
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# ملفات النظام والمحررات
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.db
