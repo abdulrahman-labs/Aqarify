@@ -1,4 +1,5 @@
-streamlit>=1.50
+streamlit
 pandas
 google-generativeai
+google-genai
 python-dotenv
