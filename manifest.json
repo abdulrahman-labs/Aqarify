@@ -1,19 +1,12 @@
 {
-  "short_name": "Aqarify",
-  "name": "Aqarify - المنصة العقارية الذكية",
-  "description": "المنصة العقارية الذكية الأولى للحلول السكنية والاستثمارية الموثوقة في مصر.",
-  "icons": [
-    {
-      "src": "https://i.ibb.co/nMQ7LjgG/icon.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
-    }
-  ],
-  "start_url": "/",
-  "scope": "/",
+  "background_color": "#14161c",
+  "dir": "ltr",
   "display": "standalone",
-  "background_color": "#14161C",
-  "theme_color": "#14161C",
-  "orientation": "portrait"
+  "name": "Aqarify - المنصة العقارية الذكية",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Aqarify",
+  "start_url": "/",
+  "theme_color": "#14161c",
+  "description": "المنصة العقارية الذكية الأولى للحلول السكنية والاستثمارية الموثوقة في مصر."
 }
