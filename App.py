@@ -6,7 +6,30 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+# ─── PWA Injector ───
+pwa_code = """
+<script>
+  // 1. إضافة Meta Tags الخاصة بالتطبيق
+  if (!document.querySelector('link[rel="manifest"]')) {
+    const manifestLink = document.createElement('link');
+    manifestLink.rel = 'manifest';
+    manifestLink.href = '/manifest.json';
+    document.head.appendChild(manifestLink);
+  }
 
+  // 2. ضبط إعدادات العرض الشاشي للموبايل
+  const metaTheme = document.createElement('meta');
+  metaTheme.name = 'theme-color';
+  metaTheme.content = '#14161C';
+  document.head.appendChild(metaTheme);
+
+  const metaApp = document.createElement('meta');
+  metaApp.name = 'apple-mobile-web-app-capable';
+  metaApp.content = 'yes';
+  document.head.appendChild(metaApp);
+</script>
+"""
+st.markdown(pwa_code, unsafe_allow_html=True)
 # ─── إدارة حالة تسجيل دخول الأدمن ───
 if "is_admin_logged_in" not in st.session_state:
     st.session_state["is_admin_logged_in"] = False
@@ -572,3 +595,40 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+# في نهاية ملف App.py خالص
+st.markdown("---")
+st.markdown("<h3 style='text-align: center; font-size: 18px;'>تطبيق الهاتف</h3>", unsafe_allow_html=True)
+
+st.components.v1.html("""
+<script>
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('installPWA');
+  if(btn) btn.style.display = 'block';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      deferredPrompt = null;
+    });
+  }
+}
+</script>
+<button id="installPWA" onclick="installApp()" style="
+    display:none;
+    width:100%;
+    background:#C9A24B;
+    color:#14161C;
+    border:none;
+    padding:10px 16px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family: 'Cairo', sans-serif;">
+    📲 تثبيت تطبيق Aqarify على الموبايل
+</button>
+""", height=50)

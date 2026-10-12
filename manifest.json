@@ -1,0 +1,21 @@
+{
+  "short_name": "Aqarify",
+  "name": "Aqarify - عقارات مصر",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1018/1018612.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1018/1018612.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FAFAF8",
+  "theme_color": "#14161C",
+  "display": "standalone",
+  "orientation": "portrait"
+}
