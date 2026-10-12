@@ -31,18 +31,46 @@ pwa_code = """
 """
 st.markdown(pwa_code, unsafe_allow_html=True)
 st.markdown("""
-<div style="background: linear-gradient(135deg, #14161C 0%, #1E222B 100%); border: 1.5px solid #C9A24B; padding: 18px 22px; border-radius: 14px; margin: 15px 0 25px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-        <span style="font-size: 22px;">📲</span>
-        <h4 style="color: #FFFFFF; font-size: 17px; margin: 0; font-family: 'Cairo', sans-serif;">نزّل تطبيق Aqarify على هاتفك</h4>
-    </div>
-    <p style="color: #B0B5C1; font-size: 13px; margin: 0 0 12px 0; font-family: 'Cairo', sans-serif;">لتجربة أسرع وتصفح العقارات بشاشة كاملة مثل التطبيقات الرسمية:</p>
-    <div style="background: rgba(201, 162, 75, 0.1); border: 1px dashed #C9A24B; padding: 8px 12px; border-radius: 8px; display: inline-block;">
-        <span style="color: #C9A24B; font-weight: bold; font-size: 13px; font-family: 'Cairo', sans-serif;">
-            افتح قائمة المتصفح ( <span style="font-size: 16px;">⋮</span> ) واضغط على <span style="color: #FFF; background: #C9A24B; color: #14161C; padding: 2px 6px; border-radius: 4px;">إضافة إلى الشاشة الرئيسية</span>
-        </span>
-    </div>
+<div style="display: flex; justify-content: flex-end; padding: 5px 10px; margin-bottom: 5px;">
+    <button id="installPWA" onclick="installApp()" style="
+        display: none;
+        background: linear-gradient(135deg, #C9A24B 0%, #B08D3E 100%);
+        color: #14161C;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(201, 162, 75, 0.3);
+        font-family: 'Cairo', sans-serif;
+        align-items: center;
+        gap: 6px;">
+        📲 تثبيت التطبيق
+    </button>
 </div>
+
+<script>
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('installPWA');
+  if(btn) btn.style.display = 'inline-flex';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      }
+      deferredPrompt = null;
+    });
+  }
+}
+</script>
 """, unsafe_allow_html=True)
 # ─── إدارة حالة تسجيل دخول الأدمن ───
 if "is_admin_logged_in" not in st.session_state:
