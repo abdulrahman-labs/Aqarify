@@ -1,19 +1,15 @@
 {
-  "short_name": "Aqarify",
-  "name": "Aqarify - المنصة العقارية الذكية",
-  "description": "المنصة العقارية الذكية الأولى للحلول السكنية والاستثمارية الموثوقة في مصر.",
+  "short_name": "Streamlit",
+  "name": "Streamlit",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "favicon_512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
-  "background_color": "#14161C",
-  "theme_color": "#14161C",
-  "orientation": "portrait"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
 }
