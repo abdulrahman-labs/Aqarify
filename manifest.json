@@ -4,13 +4,7 @@
   "description": "المنصة العقارية الذكية الأولى للحلول السكنية والاستثمارية الموثوقة في مصر.",
   "icons": [
     {
-      "src": "/icon.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon.png",
+      "src": "icon.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
