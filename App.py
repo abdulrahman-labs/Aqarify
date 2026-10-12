@@ -30,6 +30,20 @@ pwa_code = """
 </script>
 """
 st.markdown(pwa_code, unsafe_allow_html=True)
+st.markdown("""
+<div style="background: linear-gradient(135deg, #14161C 0%, #1E222B 100%); border: 1.5px solid #C9A24B; padding: 18px 22px; border-radius: 14px; margin: 15px 0 25px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">📲</span>
+        <h4 style="color: #FFFFFF; font-size: 17px; margin: 0; font-family: 'Cairo', sans-serif;">نزّل تطبيق Aqarify على هاتفك</h4>
+    </div>
+    <p style="color: #B0B5C1; font-size: 13px; margin: 0 0 12px 0; font-family: 'Cairo', sans-serif;">لتجربة أسرع وتصفح العقارات بشاشة كاملة مثل التطبيقات الرسمية:</p>
+    <div style="background: rgba(201, 162, 75, 0.1); border: 1px dashed #C9A24B; padding: 8px 12px; border-radius: 8px; display: inline-block;">
+        <span style="color: #C9A24B; font-weight: bold; font-size: 13px; font-family: 'Cairo', sans-serif;">
+            افتح قائمة المتصفح ( <span style="font-size: 16px;">⋮</span> ) واضغط على <span style="color: #FFF; background: #C9A24B; color: #14161C; padding: 2px 6px; border-radius: 4px;">إضافة إلى الشاشة الرئيسية</span>
+        </span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 # ─── إدارة حالة تسجيل دخول الأدمن ───
 if "is_admin_logged_in" not in st.session_state:
     st.session_state["is_admin_logged_in"] = False
@@ -599,36 +613,3 @@ st.markdown("""
 st.markdown("---")
 st.markdown("<h3 style='text-align: center; font-size: 18px;'>تطبيق الهاتف</h3>", unsafe_allow_html=True)
 
-st.components.v1.html("""
-<script>
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  const btn = document.getElementById('installPWA');
-  if(btn) btn.style.display = 'block';
-});
-
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      deferredPrompt = null;
-    });
-  }
-}
-</script>
-<button id="installPWA" onclick="installApp()" style="
-    display:none;
-    width:100%;
-    background:#C9A24B;
-    color:#14161C;
-    border:none;
-    padding:10px 16px;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
-    font-family: 'Cairo', sans-serif;">
-    📲 تثبيت تطبيق Aqarify على الموبايل
-</button>
-""", height=50)
