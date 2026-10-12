@@ -1,21 +1,25 @@
 {
   "short_name": "Aqarify",
-  "name": "Aqarify - عقارات مصر",
+  "name": "Aqarify - المنصة العقارية الذكية",
+  "description": "المنصة العقارية الذكية الأولى للحلول السكنية والاستثمارية الموثوقة في مصر.",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/1018/1018612.png",
+      "src": "/icon.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/1018/1018612.png",
+      "src": "/icon.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/",
-  "background_color": "#FAFAF8",
-  "theme_color": "#14161C",
+  "scope": "/",
   "display": "standalone",
+  "background_color": "#14161C",
+  "theme_color": "#14161C",
   "orientation": "portrait"
 }
