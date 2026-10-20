@@ -163,6 +163,26 @@ st.markdown("""
     }
 
     @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            max-width: 100% !important;
+        }
+        .hero-title-main { font-size: 28px !important; }
+        .brand-logo-text { font-size: 26px !important; }
+        .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+        .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
+            justify-content: center !important; gap: 12px !important;
+        }
+        /* إجبار أعمدة Streamlit على النزول تحت بعضها على الموبايل */
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 

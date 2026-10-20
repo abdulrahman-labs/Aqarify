@@ -77,40 +77,43 @@ st.markdown("""
         display: block;
     }
 
-    /* Navbar Links */
-    .nav-bar-container {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 28px;
-        padding-top: 10px;
+    /* ─── شريط التنقل (st.page_link) ─── */
+    .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
+        display: flex !important; flex-direction: row !important; flex-wrap: wrap;
+        justify-content: flex-end; align-items: center; gap: 28px !important; padding-top: 10px;
     }
-    .nav-link {
-        position: relative;
-        color: var(--color-dark) !important;
-        font-size: 17px !important;
-        font-weight: 700 !important;
-        text-decoration: none !important;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 0;
-        transition: color 0.2s ease;
+    .st-key-topnav [data-testid="stElementContainer"],
+    .st-key-topnav [data-testid="stPageLink"] { width: auto !important; flex: 0 0 auto !important; }
+
+    .st-key-topnav [data-testid="stPageLink-NavLink"] {
+        position: relative; display: inline-flex !important; align-items: center; gap: 8px;
+        background: transparent !important; padding: 8px 0 !important; border-radius: 0 !important;
+        color: var(--color-dark) !important; text-decoration: none !important; transition: color .2s ease;
     }
-    .nav-link:hover, .nav-link.active {
+    .st-key-topnav [data-testid="stPageLink-NavLink"] * { background: transparent !important; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"] p {
+        font-size: 17px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
+    }
+    .st-key-topnav [data-testid="stPageLink-NavLink"]::before {
+        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important;
+        font-size: 16px; content: "\\f015";
+    }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Properties"]::before { content: "\\f64f"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Customer"]::before   { content: "\\f508"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Calculator"]::before { content: "\\f1ec"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Admin"]::before      { content: "\\f1de"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Login"]::before      { content: "\\f2f6"; }
+
+    .st-key-topnav [data-testid="stPageLink-NavLink"]:hover { color: var(--color-accent) !important; }
+    /* الصفحة الحالية = الرئيسية (أي رابط مش من الروابط التانية) */
+    .st-key-topnav [data-testid="stPageLink-NavLink"]:not([href*="Properties"]):not([href*="Customer"]):not([href*="Calculator"]):not([href*="Admin"]):not([href*="Login"]) {
         color: var(--color-accent) !important;
     }
-    .nav-link.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-accent);
+    .st-key-topnav [data-testid="stPageLink-NavLink"]:not([href*="Properties"]):not([href*="Customer"]):not([href*="Calculator"]):not([href*="Admin"]):not([href*="Login"])::after {
+        content: ""; position: absolute; bottom: 0; right: 0; width: 100%; height: 2px; background: var(--color-accent);
     }
 
-    /* ─── الهيرو ورسوخ الأزرار ─── */
+    /* ─── الهيرو ─── */
     .hero-title-main {
         font-size: 42px !important;
         font-weight: 800 !important;
@@ -132,43 +135,75 @@ st.markdown("""
         margin-bottom: 35px !important;
     }
 
-    /* أزرار Streamlit المخصصة بالألوان والتأثيرات */
-    .stButton>button {
-        font-family: 'Cairo', sans-serif !important;
-        font-weight: 700 !important;
-        border-radius: 12px !important;
-        transition: all 0.2s ease !important;
+    /* ─── الأزرار الرئيسية (مربوطة بالـ key عشان التنسيق يتطبق فعلاً) ─── */
+    .st-key-hero_chat button, .st-key-cta_bottom_btn button,
+    .st-key-hero_explore button, .st-key-all_props_btn button {
+        min-height: 56px !important;
+        padding: 0 28px !important;
+        border-radius: 14px !important;
         cursor: pointer !important;
+        transition: transform .25s ease, box-shadow .25s ease, background .25s ease,
+                    color .25s ease, border-color .25s ease, filter .25s ease !important;
+    }
+    .st-key-hero_chat button *, .st-key-cta_bottom_btn button *,
+    .st-key-hero_explore button *, .st-key-all_props_btn button * {
+        background: transparent !important;
+        color: inherit !important;
+        font-size: 17px !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+    }
+    .st-key-hero_chat button p::before, .st-key-cta_bottom_btn button p::before,
+    .st-key-hero_explore button p::before, .st-key-all_props_btn button p::before {
+        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important;
+        display: inline-block; margin-left: 10px; font-size: 16px;
+        transition: transform .25s ease, color .25s ease;
+    }
+    .st-key-hero_chat button p::before      { content: "\\f086"; }
+    .st-key-cta_bottom_btn button p::before { content: "\\f135"; }
+    .st-key-hero_explore button p::before   { content: "\\f1ad"; }
+    .st-key-all_props_btn button p::before  { content: "\\f1ad"; }
+
+    /* زر ذهبي (Primary) */
+    .st-key-hero_chat button, .st-key-cta_bottom_btn button {
+        background: linear-gradient(135deg, #DDB964 0%, #C9A24B 100%) !important;
+        color: var(--color-dark) !important;
+        border: 1px solid var(--color-accent) !important;
+        box-shadow: 0 4px 14px rgba(201, 162, 75, 0.28) !important;
+    }
+    .st-key-hero_chat button:hover, .st-key-cta_bottom_btn button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 12px 28px rgba(201, 162, 75, 0.5) !important;
+        filter: brightness(1.06);
+    }
+    .st-key-hero_chat button:hover p::before, .st-key-cta_bottom_btn button:hover p::before {
+        transform: translateX(-4px) scale(1.2) rotate(-8deg);
     }
 
-    /* زر أساسي (Primary) */
-    .btn-hero-primary>button {
-        background-color: var(--color-accent) !important;
+    /* زر بإطار (Outline) */
+    .st-key-hero_explore button, .st-key-all_props_btn button {
+        background: var(--color-white) !important;
         color: var(--color-dark) !important;
-        border: none !important;
-        padding: 14px 28px !important;
-        font-size: 17px !important;
-        width: 100% !important;
+        border: 1.5px solid var(--color-dark) !important;
+        box-shadow: 0 2px 8px rgba(20, 22, 28, 0.06) !important;
     }
-    .btn-hero-primary>button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 18px rgba(201, 162, 75, 0.35) !important;
-    }
-
-    /* زر ثانوي (Outline) */
-    .btn-hero-outline>button {
-        background-color: transparent !important;
-        color: var(--color-dark) !important;
-        border: 1px solid var(--color-dark) !important;
-        padding: 14px 28px !important;
-        font-size: 17px !important;
-        width: 100% !important;
-    }
-    .btn-hero-outline>button:hover {
-        background-color: var(--color-dark) !important;
+    .st-key-hero_explore button:hover, .st-key-all_props_btn button:hover {
+        background: var(--color-dark) !important;
         color: var(--color-white) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 18px rgba(20, 22, 28, 0.2) !important;
+        border-color: var(--color-dark) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 12px 28px rgba(20, 22, 28, 0.28) !important;
+    }
+    .st-key-hero_explore button:hover p::before, .st-key-all_props_btn button:hover p::before {
+        color: var(--color-accent) !important;
+        transform: translateX(-4px) scale(1.2);
+    }
+
+    /* ضغطة الزر */
+    .st-key-hero_chat button:active, .st-key-cta_bottom_btn button:active,
+    .st-key-hero_explore button:active, .st-key-all_props_btn button:active {
+        transform: translateY(0) scale(0.97) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     }
 
     /* صورة الهيرو والإحصائية */
@@ -290,11 +325,31 @@ st.markdown("""
     }
 
     #MainMenu, footer {visibility: hidden;}
+
+/* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            max-width: 100% !important;
+        }
+        .hero-title-main { font-size: 28px !important; }
+        .brand-logo-text { font-size: 26px !important; }
+        .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+        .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
+            justify-content: center !important; gap: 12px !important;
+        }
+        /* إجبار أعمدة Streamlit على النزول تحت بعضها على الموبايل */
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
-
 # ─── 2. الشعار والهيدر العلوي ───
-col_header_right, col_header_left = st.columns([1.5, 2.2])
+col_header_right, col_header_left = st.columns([1.4, 3])
 
 with col_header_right:
     st.markdown("""
@@ -308,32 +363,17 @@ with col_header_right:
     """, unsafe_allow_html=True)
 
 with col_header_left:
-    # إظهار رابط لوحة الإدارة فقط إذا سجل الأدمن دخوله
-    admin_link_html = ""
-    if st.session_state.get("is_admin_logged_in", False):
-        admin_link_html = """
-        <a href="?page=admin" target="_self" class="nav-link">
-            <i class="fa-solid fa-sliders"></i> لوحة الإدارة
-        </a>
-        """
-
-    st.markdown(f"""
-    <div class="nav-bar-container">
-        <a href="?page=home" target="_self" class="nav-link active">
-            <i class="fa-solid fa-house"></i> الرئيسية
-        </a>
-        <a href="?page=props" target="_self" class="nav-link">
-            <i class="fa-solid fa-city"></i> معرض العقارات
-        </a>
-        <a href="?page=chat" target="_self" class="nav-link">
-            <i class="fa-solid fa-user-tie"></i> المستشار الذكي
-        </a>
-        <a href="?page=calc" target="_self" class="nav-link">
-            <i class="fa-solid fa-calculator"></i> حاسبة التمويل
-        </a>
-        {admin_link_html}
-    </div>
-    """, unsafe_allow_html=True)
+    with st.container(key="topnav"):
+        st.page_link("App.py", label="الرئيسية")
+        st.page_link("pages/Properties.py", label="معرض العقارات")
+        st.page_link("pages/Customer Service.py", label="المستشار الذكي")
+        st.page_link("pages/Calculator.py", label="حاسبة التمويل")
+        if st.session_state.get("is_admin_logged_in", False):
+            st.page_link("pages/Admin.py", label="لوحة الإدارة")
+        if st.session_state.get("user"):
+            st.page_link("pages/Login.py", label="حسابي")
+        else:
+            st.page_link("pages/Login.py", label="تسجيل الدخول")
 
 # ─── التوجيه عبر الرابط (Routing) ───
 if "page" in st.query_params:
@@ -356,7 +396,7 @@ col_hero_text, col_hero_img = st.columns([1.1, 1.1])
 with col_hero_text:
     st.markdown("<div class='hero-title-main'>مستقبل السكن العقاري الذكي</div>", unsafe_allow_html=True)
     st.markdown("<div class='hero-title-sub'>Future of Modern Living</div>", unsafe_allow_html=True)
-    
+
     st.markdown("""
     <div class='hero-desc'>
         نقدم لك أرقى المجتمعات السكنية والوحدات الفاخرة، مع تجربة استشارة فورية معززة بالذكاء الاصطناعي لاختيار العقار المالي والسكني الأمثل لك ولأسرتك.
@@ -365,16 +405,12 @@ with col_hero_text:
 
     btn_c1, btn_c2 = st.columns([1, 1])
     with btn_c1:
-        st.markdown("<div class='btn-hero-primary'>", unsafe_allow_html=True)
-        if st.button("تحدث مع المستشار الذكي 💬", width="stretch"):
+        if st.button("تحدث مع المستشار الذكي", key="hero_chat", width="stretch"):
             st.switch_page("pages/Customer Service.py")
-        st.markdown("</div>", unsafe_allow_html=True)
 
     with btn_c2:
-        st.markdown("<div class='btn-hero-outline'>", unsafe_allow_html=True)
-        if st.button("استكشف المعرض 🏢", width="stretch"):
+        if st.button("استكشف المعرض", key="hero_explore", width="stretch"):
             st.switch_page("pages/Properties.py")
-        st.markdown("</div>", unsafe_allow_html=True)
 
 with col_hero_img:
     st.markdown("""
@@ -483,14 +519,11 @@ for idx, prp in enumerate(featured_props):
         </div>
         """, unsafe_allow_html=True)
 
-st.markdown("<div style='margin-top: 20px; text-align: center;'>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
 col_btn_center = st.columns([1, 1.2, 1])
 with col_btn_center[1]:
-    st.markdown("<div class='btn-hero-outline'>", unsafe_allow_html=True)
-    if st.button("عرض كل العقارات 🏢", width="stretch"):
+    if st.button("عرض كل العقارات", key="all_props_btn", width="stretch"):
         st.switch_page("pages/Properties.py")
-    st.markdown("</div>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
 
@@ -530,10 +563,8 @@ st.markdown("""
 
 col_cta_btn = st.columns([1, 1.2, 1])
 with col_cta_btn[1]:
-    st.markdown("<div class='btn-hero-primary'>", unsafe_allow_html=True)
-    if st.button("ابدأ المحادثة الآن 🚀", key="cta_bottom_btn", width="stretch"):
+    if st.button("ابدأ المحادثة الآن", key="cta_bottom_btn", width="stretch"):
         st.switch_page("pages/Customer Service.py")
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # و) فوتر الشعار والروابط
 st.markdown("""

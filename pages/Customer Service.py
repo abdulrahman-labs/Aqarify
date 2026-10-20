@@ -1,11 +1,11 @@
-import json
 import os
 import re
-from datetime import datetime
-from pathlib import Path
 from urllib.parse import quote
 
 import streamlit as st
+import streamlit.components.v1 as components
+
+import db
 
 try:
     from dotenv import load_dotenv
@@ -30,9 +30,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_FILE = ROOT / "data" / "properties.json"
-TICKETS_FILE = ROOT / "data" / "tickets.json"
+DB_FILE = db.DB_FILE
 WHATSAPP_NUMBER = "201000000000"   # ← غيّره برقمك الحقيقي
 PHONE_TEXT = "+20 100 000 0000"
 EMAIL_TEXT = "support@aqarify-eg.com"
@@ -156,6 +154,10 @@ st.markdown("""
     [data-testid="stChatMessageAvatarUser"] { background: var(--color-accent) !important; color: var(--color-dark) !important; }
     [data-testid="stChatInput"] { border-radius: 14px; border: 1px solid var(--color-border); }
 
+    /* حاوية الرسائل (بتسكرول جواها) وعنصر السكرول المخفي */
+    .st-key-chat_scroll { background: var(--color-bg); }
+    .st-key-scroll_helper { height: 0 !important; margin: 0 !important; overflow: hidden !important; }
+
     /* ─── التبويبات ─── */
     .stTabs [data-baseweb="tab-list"] { gap: 12px; border-bottom: none; }
     .stTabs [data-baseweb="tab"] {
@@ -197,20 +199,51 @@ st.markdown("""
     [data-testid="stBaseButton-primary"]:hover, [data-testid="stBaseButton-primaryFormSubmit"]:hover {
         box-shadow: 0 4px 12px rgba(201,162,75,.35); background: var(--color-accent); color: var(--color-dark);
     }
+    /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            max-width: 100% !important;
+        }
+        .hero-title-main { font-size: 28px !important; }
+        .brand-logo-text { font-size: 26px !important; }
+        .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+        .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
+            justify-content: center !important; gap: 12px !important;
+        }
+        /* إجبار أعمدة Streamlit على النزول تحت بعضها على الموبايل */
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════
-# 2) البيانات
+# 2) البيانات (من قاعدة البيانات SQLite)
 # ═══════════════════════════════════════════════════════════════
+def _to_legacy(p):
+    """يحوّل صف الـ DB لنفس الشكل القديم (price نص منسّق، price_val رقم، desc)."""
+    p = dict(p)
+    p["price_val"] = int(p["price"])
+    p["price"] = f"{p['price_val']:,}"
+    p["desc"] = p.pop("description", "") or ""
+    if isinstance(p.get("area"), float) and p["area"].is_integer():
+        p["area"] = int(p["area"])
+    return p
+
+
 @st.cache_data
 def load_props(mtime):
-    with open(DATA_FILE, encoding="utf-8") as f:
-        return json.load(f)
+    items = [_to_legacy(p) for p in db.search_properties(sort="newest")]
+    return sorted(items, key=lambda p: p["id"])
 
 
-if DATA_FILE.exists():
-    PROPS = load_props(DATA_FILE.stat().st_mtime)
+if DB_FILE.exists():
+    PROPS = load_props(DB_FILE.stat().st_mtime)
 else:
     PROPS = st.session_state.get("properties_list", [])
 st.session_state.properties_list = PROPS
@@ -242,8 +275,19 @@ with col_nav:
 st.markdown("<hr style='margin: 10px 0 25px 0; border-color: var(--color-border);'>", unsafe_allow_html=True)
 
 if not PROPS:
-    st.error("ملف البيانات غير موجود. تأكد من وجود data/properties.json في مجلد المشروع.")
+    st.error("قاعدة البيانات غير موجودة. شغّل: python migrate.py")
     st.stop()
+
+
+@st.cache_resource
+def _init_chat_db():
+    """ينشئ جداول المحادثات والتذاكر مرة واحدة (IF NOT EXISTS فمفيش خطر)."""
+    db.init_chat_tables()
+    db.init_tickets_table()
+    return True
+
+
+_init_chat_db()
 
 # ═══════════════════════════════════════════════════════════════
 # 4) منطق المستشار (بحث + ردود محلية مطورة + Gemini)
@@ -321,6 +365,10 @@ def parse_query(text):
     elif "استثمار" in t:
         f["sort"] = "ppm"
     return f
+
+
+def has_filters(f):
+    return bool(f and (f.get("city") or f.get("type") or f.get("beds") or f.get("max_price") or f.get("sort")))
 
 
 def run_search(f):
@@ -458,7 +506,7 @@ def local_reply(text, active):
 
     # 3. تحليل وشروط الاستعلام والبحث
     f = parse_query(text)
-    if f and (f.get("city") or f.get("type") or f.get("beds") or f.get("max_price") or f.get("sort")):
+    if has_filters(f):
         recs, note = search_with_relax(f)
         if recs:
             return search_text(recs, note), [p["id"] for p in recs[:3]]
@@ -480,19 +528,66 @@ def local_reply(text, active):
             "\n\nيمكنك تحديد طلبك بذكر المنطقة (مثل: التجمع، الشيخ زايد، العاصمة) والميزانية وسأرشح لك العقار المثالي."), [p["id"] for p in top_recs]
 
 
-def catalog_text():
+# ─── اختيار الوحدات المرسلة لـ Gemini (أفضل 5 فقط بدل الكتالوج كله) ───
+SHORTLIST_SIZE = 5
+
+
+def shortlist(text, active, history, n=SHORTLIST_SIZE):
+    """بحث محلي يرجّع أقرب n وحدات لسؤال العميل. Gemini ما بيشوفش غيرها."""
+    picked = []
+
+    def add(p):
+        if len(picked) >= n:
+            return
+        if active and p["id"] == active["id"]:
+            return
+        if all(p["id"] != x["id"] for x in picked):
+            picked.append(p)
+
+    t = norm(text)
+
+    # 1) وحدات ذكرها العميل صراحة (#12 أو "وحدة رقم 12")
+    for m in re.findall(r"(?:#|رقم|وحده)\s*(\d{1,3})", t):
+        if int(m) in BY_ID:
+            add(BY_ID[int(m)])
+
+    # 2) الوحدات اللي رشحناها في آخر رد (عشان أسئلة زي "قارن بينهم")
+    for m in reversed(history):
+        if m.get("ids"):
+            for i in m["ids"]:
+                if i in BY_ID:
+                    add(BY_ID[i])
+            break
+
+    # 3) بحث بالفلاتر المفهومة من السؤال
+    f = parse_query(text)
+    if has_filters(f):
+        recs, _ = search_with_relax(f)
+        for p in recs:
+            add(p)
+
+    # 4) لو مفيش أي حاجة، نبعت عينة صغيرة (الأرخص)
+    if not picked:
+        for p in sorted(PROPS, key=lambda x: x["price_val"]):
+            add(p)
+
+    return picked[:n]
+
+
+def catalog_text(units):
     lines = []
-    for p in PROPS:
-        lines.append(f"#{p['id']} | {p['type']} | {p['location']} | {p['price_val']:,} ج.م | {p['area']} م² | {p['beds']} غرف")
+    for p in units:
+        lines.append(f"#{p['id']} | {p['type']} | {p['location']} | {p['price_val']:,} ج.م | "
+                     f"{p['area']} م² | {p['beds']} غرف | {p.get('status', '')}")
     return "\n".join(lines)
 
 
 SYSTEM_PROMPT = """أنت المستشار العقاري الذكي لمنصة Aqarify في مصر.
 - تتحدث بالعربية بأسلوب مهني ودود، سلس، ومحترف جداً.
-- مصدرك الرئيسي للمعلومات هو قاعدة بيانات الوحدات المرفقة، ولا تذكر معلومات غير صحيحة.
+- مصدرك الوحيد للمعلومات هو الوحدات المرفقة مع السؤال (وهي أنسب نتائج البحث وليست كل الوحدات)، ولا تذكر معلومات غير صحيحة.
 - عند الترشيح اذكر أرقام الوحدات بصيغة #رقم (بحد أقصى 3 وحدات) مع السعر والمساحة والمنطقة.
-- لا تخترع أي وحدة أو سعر أو مساحة أو ميزة غير موجودة في قاعدة البيانات.
-- إذا لم تتوفر معلومة في البيانات، قل بوضوح إنها غير متاحة.
+- لا تخترع أي وحدة أو سعر أو مساحة أو ميزة غير موجودة في الوحدات المرفقة.
+- إذا لم تتوفر معلومة في البيانات، قل بوضوح إنها غير متاحة، واطلب من العميل تحديد المنطقة أو الميزانية أو عدد الغرف لتحسين البحث.
 - للأسعار والتقسيط: المقدم التقديري 10% والباقي على 8 سنوات بدون فوائد، مع توضيح أن الأرقام تقديرية.
 - للمعاينة أو التواصل وجّه العميل إلى تبويب «الدعم البشري وحجز تذكرة» أو الواتساب.
 - جاوب على تحية العميل واستفساراته العامة بود ولطف ومهنية راقية."""
@@ -512,6 +607,15 @@ def get_api_key():
     return ""
 
 
+# ─── كاش الردود: نفس السؤال المتكرر يتجاوب من غير ما نكلم الـ API ───
+CACHE_MAX = 300
+
+
+@st.cache_resource
+def _reply_cache():
+    return {}
+
+
 def ask_gemini(text, active, history):
     key = get_api_key()
 
@@ -529,6 +633,14 @@ def ask_gemini(text, active, history):
         )
         return None
 
+    # نكاشي بس الأسئلة المستقلة (ليها فلاتر واضحة أو متعلقة بوحدة مختارة)
+    cache = _reply_cache()
+    cacheable = bool(active) or has_filters(parse_query(text))
+    ckey = (norm(text).strip(), active["id"] if active else None)
+    if cacheable and ckey in cache:
+        st.session_state.pop("llm_error", None)
+        return cache[ckey]
+
     try:
         client = genai.Client(api_key=key)
 
@@ -541,18 +653,20 @@ def ask_gemini(text, active, history):
                 f"{active['beds']} غرف | {active.get('desc', '')}\n"
             )
 
+        units = shortlist(text, active, history)
+
         hist = "\n".join(
-            ("العميل: " if m["role"] == "user" else "المستشار: ") + m["content"]
-            for m in history[-6:]
+            ("العميل: " if m["role"] == "user" else "المستشار: ") + m["content"][:400]
+            for m in history[-4:]
         )
 
         prompt = (
-            "قاعدة بيانات الوحدات المتاحة في Aqarify:\n"
-            f"{catalog_text()}\n"
+            "أنسب الوحدات المتاحة في Aqarify لطلب العميل (نتيجة بحث، وليست كل الوحدات):\n"
+            f"{catalog_text(units)}\n"
             f"{ctx}\n"
             f"سجل المحادثة السابقة:\n{hist}\n\n"
             f"سؤال العميل الحالي:\n{text}\n\n"
-            "أجب عن السؤال مباشرة بالعربية. استخدم قاعدة البيانات فقط "
+            "أجب عن السؤال مباشرة بالعربية. استخدم الوحدات المذكورة أعلاه فقط "
             "في معلومات العقارات والأسعار والمواصفات. لا تخترع وحدات أو "
             "أسعارًا أو مواصفات غير موجودة. عند الترشيح اذكر أرقام الوحدات "
             "بصيغة #رقم وبحد أقصى ثلاث وحدات. إذا لم تجد معلومة في البيانات، "
@@ -574,8 +688,14 @@ def ask_gemini(text, active, history):
             )
             return None
 
+        reply = reply.strip()
         st.session_state.pop("llm_error", None)
-        return reply.strip()
+
+        if cacheable:
+            if len(cache) >= CACHE_MAX:
+                cache.clear()
+            cache[ckey] = reply
+        return reply
 
     except Exception as e:
         error_text = f"{type(e).__name__}: {e}"
@@ -609,7 +729,7 @@ def respond(text):
             word in norm(text)
             for word in ("رشح", "ترشيح", "اقتراح", "افضل", "ارخص", "وحدات", "شقه", "فيلا", "شاليه", "استثمار")
         )
-        if not ids and f and (f.get("city") or f.get("type") or f.get("beds") or f.get("max_price") or f.get("sort")):
+        if not ids and has_filters(f):
             recs, _ = search_with_relax(f)
             ids = [p["id"] for p in recs[:3] if not (active and p["id"] == active["id"])]
         elif not ids and asks_for_recommendations and not active:
@@ -623,12 +743,13 @@ def respond(text):
 
 
 # ═══════════════════════════════════════════════════════════════
-# 5) حالة الجلسة والوصول من المعرض
+# 5) حالة الجلسة وسجل المحادثات
 # ═══════════════════════════════════════════════════════════════
 GREETING = (f"أهلاً بك في Aqarify. أنا مستشارك العقاري الذكي، وعندي بيانات كل الوحدات المتاحة ({len(PROPS)} وحدة) "
             "بمساحاتها وأسعارها وتفاصيلها. اطلب مني ترشيحات حسب ميزانيتك ومنطقتك، أو اسألني عن أي وحدة.")
 st.session_state.setdefault("messages", [{"role": "assistant", "content": GREETING, "ids": []}])
 st.session_state.setdefault("active_prop_id", None)
+st.session_state.setdefault("conv_id", None)   # رقم المحادثة المحفوظة (None = محادثة جديدة)
 
 ctx_title = st.session_state.get("chat_property_context")
 if ctx_title:
@@ -647,6 +768,20 @@ if ctx_title:
     st.session_state.chat_property_context = None
 
 
+def current_user():
+    return st.session_state.get("user")
+
+
+def _save_active(pid):
+    """يحفظ الوحدة المختارة جوه المحادثة المحفوظة (لو فيه)."""
+    user, cid = current_user(), st.session_state.get("conv_id")
+    if user and cid:
+        try:
+            db.set_conversation_property(cid, user["id"], pid)
+        except Exception:
+            pass
+
+
 def set_prompt(text):
     st.session_state.pending_prompt = text
 
@@ -654,15 +789,85 @@ def set_prompt(text):
 def select_property(pid):
     st.session_state.active_prop_id = pid
     st.session_state.pending_prompt = f"عايز أعرف تفاصيل الوحدة رقم {pid}"
+    _save_active(pid)
 
 
 def clear_active():
     st.session_state.active_prop_id = None
+    _save_active(None)
 
 
 def new_chat():
     st.session_state.messages = [{"role": "assistant", "content": GREETING, "ids": []}]
     st.session_state.active_prop_id = None
+    st.session_state.conv_id = None
+
+
+def open_conversation(cid):
+    user = current_user()
+    if not user:
+        return
+    conv = db.get_conversation(cid, user["id"])
+    if not conv:
+        return
+    stored = db.get_messages(cid, user["id"])
+    st.session_state.messages = [{"role": "assistant", "content": GREETING, "ids": []}] + stored
+    st.session_state.conv_id = cid
+    ap = conv.get("active_prop_id")
+    st.session_state.active_prop_id = ap if ap in BY_ID else None
+
+
+def delete_conv(cid):
+    user = current_user()
+    if not user:
+        return
+    db.delete_conversation(cid, user["id"])
+    if st.session_state.get("conv_id") == cid:
+        new_chat()
+
+
+def persist_turn(user, prompt, reply, ids):
+    """يحفظ سؤال العميل ورد المستشار في المحادثة (وينشئها لو أول رسالة)."""
+    try:
+        cid = st.session_state.get("conv_id")
+        if not cid:
+            cid = db.create_conversation(user["id"], prompt, st.session_state.get("active_prop_id"))
+            st.session_state.conv_id = cid
+        db.add_message(cid, user["id"], "user", prompt)
+        db.add_message(cid, user["id"], "assistant", reply, ids)
+    except Exception as e:
+        print(f"[Aqarify chat save error] {type(e).__name__}: {e}")
+        st.warning("تعذر حفظ هذه المحادثة في سجلك، لكن المحادثة الحالية مستمرة.")
+
+
+def auto_scroll():
+    """ينزّل حاوية المحادثة لآخر رسالة تلقائياً بعد كل رد أو فتح محادثة."""
+    nonce = f"{st.session_state.get('conv_id')}-{len(st.session_state.messages)}"
+    js = """
+    <script>
+    (function () {
+      var win = window.parent, doc = win.document;
+      function scrollable(root) {
+        var all = [root].concat(Array.prototype.slice.call(root.querySelectorAll('*')));
+        for (var i = 0; i < all.length; i++) {
+          var oy = win.getComputedStyle(all[i]).overflowY;
+          if ((oy === 'auto' || oy === 'scroll') && all[i].scrollHeight > all[i].clientHeight + 1) return all[i];
+        }
+        return null;
+      }
+      function go() {
+        var root = doc.querySelector('.st-key-chat_scroll');
+        if (!root) return;
+        var el = scrollable(root);
+        if (el) el.scrollTop = el.scrollHeight;
+      }
+      [0, 150, 400, 900].forEach(function (t) { setTimeout(go, t); });
+    })();
+    </script>
+    <!-- NONCE -->
+    """.replace("NONCE", nonce)
+    with st.container(key="scroll_helper"):
+        components.html(js, height=0)
 
 
 def go_calculator(p):
@@ -671,18 +876,14 @@ def go_calculator(p):
 
 
 def save_ticket(ticket):
-    items = []
-    if TICKETS_FILE.exists():
-        try:
-            items = json.loads(TICKETS_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            items = []
-    ticket["id"] = f"TK-{4800 + len(items) + 1}"
-    ticket["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
-    items.append(ticket)
-    TICKETS_FILE.parent.mkdir(exist_ok=True)
-    TICKETS_FILE.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
-    return ticket["id"]
+    """يحفظ التذكرة في قاعدة البيانات ويرجّع كودها (TK-xxxx)، ومربوطة بالمستخدم لو مسجّل دخول."""
+    user = current_user()
+    prop = BY_ID.get(ticket.get("property_id"))
+    return db.create_ticket(
+        user["id"] if user else None,
+        ticket["name"], ticket["phone"], ticket["topic"], ticket.get("notes", ""),
+        ticket.get("property_id"), prop["title"] if prop else None,
+    )
 
 
 def mini_card(p):
@@ -709,6 +910,42 @@ def contact_box():
         '<div><b>مواعيد العمل</b>الأحد إلى الخميس، 9 ص - 6 م</div></div></div>',
         unsafe_allow_html=True,
     )
+
+
+def history_box():
+    """صندوق المحادثات القديمة: للمسجّل قائمة محادثاته، وللزائر دعوة لتسجيل الدخول."""
+    user = current_user()
+    if not user:
+        st.markdown(
+            '<div class="box"><div class="box-title"><i class="fa-solid fa-clock-rotate-left" style="color:var(--color-accent)"></i> محادثاتي</div>'
+            '<div style="font-size:14px;color:var(--color-text-muted);margin-bottom:10px;">'
+            'سجّل دخولك لحفظ محادثاتك مع المستشار والرجوع لها في أي وقت.</div></div>',
+            unsafe_allow_html=True,
+        )
+        st.page_link("pages/Login.py", label="تسجيل الدخول", icon=":material/login:")
+        return
+
+    st.markdown('<div class="box-title"><i class="fa-solid fa-clock-rotate-left" style="color:var(--color-accent)"></i> محادثاتي</div>',
+                unsafe_allow_html=True)
+    st.button("محادثة جديدة", key="hist_new", icon=":material/add:", type="primary",
+              on_click=new_chat, width="stretch")
+    try:
+        convs = db.list_conversations(user["id"])
+    except Exception:
+        convs = []
+        st.caption("تعذر تحميل المحادثات.")
+    if not convs:
+        st.caption("لسه ما عندكش محادثات محفوظة. ابدأ بسؤال وهتتحفظ تلقائياً.")
+    else:
+        with st.container(height=260, key="hist_list"):
+            for c in convs:
+                a, b = st.columns([5, 1])
+                is_cur = c["id"] == st.session_state.get("conv_id")
+                a.button(c["title"], key=f"conv_{c['id']}", on_click=open_conversation, args=(c["id"],),
+                         type="primary" if is_cur else "secondary", width="stretch")
+                b.button("", key=f"cdel_{c['id']}", icon=":material/delete:", help="حذف المحادثة",
+                         on_click=delete_conv, args=(c["id"],), width="stretch")
+    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -752,7 +989,8 @@ with tab_ai:
             with st.expander("كيفية إعداد مفتاح Gemini"):
                 st.write("أضف GEMINI_API_KEY إلى ملف .env أو إلى Streamlit Secrets.")
 
-        msgs = st.container()
+        # حاوية الرسائل بارتفاع ثابت: بتسكرول جواها، وبتنزل لآخر رسالة تلقائياً
+        msgs = st.container(height=520, key="chat_scroll")
 
         if active:
             chips = [("السعر وخطة السداد", "كام السعر وخطة السداد؟"), ("المميزات والتشطيب", "إيه المميزات والتشطيب؟"),
@@ -772,6 +1010,8 @@ with tab_ai:
             with st.spinner("المستشار يحلل طلبك…"):
                 reply, ids = respond(prompt)
             st.session_state.messages.append({"role": "assistant", "content": reply, "ids": ids})
+            if current_user():
+                persist_turn(current_user(), prompt, reply, ids)
             active = BY_ID.get(st.session_state.active_prop_id)
 
         with msgs:
@@ -786,9 +1026,13 @@ with tab_ai:
                                 st.button("اسأل عنها", key=f"rec_{idx}_{p['id']}", icon=":material/chat:",
                                           on_click=select_property, args=(p["id"],), width="stretch")
 
+        auto_scroll()
+
         st.button("محادثة جديدة", icon=":material/refresh:", on_click=new_chat)
 
     with col_side:
+        history_box()
+
         if active:
             finishing = active.get("finishing", "أولترا لوكس")
             status = active.get("status", "جاهز")
@@ -839,7 +1083,7 @@ with tab_human:
         )
         active_for_ticket = BY_ID.get(st.session_state.active_prop_id)
         with st.form("ticket_form", clear_on_submit=True):
-            name = st.text_input("الاسم بالكامل")
+            name = st.text_input("الاسم بالكامل", value=(current_user() or {}).get("name", ""))
             phone = st.text_input("رقم الهاتف أو الواتساب", placeholder="01012345678")
             topic = st.selectbox("نوع الطلب", ["طلب معاينة على الطبيعة", "استفسار عن خطط التقسيط والتمويل",
                                               "طلب المخططات الهندسية", "استشارة استثمارية عامة"])

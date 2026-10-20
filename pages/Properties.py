@@ -1,8 +1,8 @@
-import json
 import math
-from pathlib import Path
 
 import streamlit as st
+
+import db
 
 st.set_page_config(
     page_title="معرض العقارات | Aqarify",
@@ -182,27 +182,57 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(201,162,75,.35); border-color: var(--color-accent);
         background: var(--color-accent); color: var(--color-dark);
     }
+    /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            max-width: 100% !important;
+        }
+        .hero-title-main { font-size: 28px !important; }
+        .brand-logo-text { font-size: 26px !important; }
+        .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+        .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
+            justify-content: center !important; gap: 12px !important;
+        }
+        /* إجبار أعمدة Streamlit على النزول تحت بعضها على الموبايل */
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════
-# 2) تحميل البيانات من data/properties.json
+# 2) تحميل البيانات من قاعدة البيانات (SQLite)
 # ═══════════════════════════════════════════════════════════════
-DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "properties.json"
+DB_FILE = db.DB_FILE
 PAGE_SIZE = 12
+
+
+def _to_legacy(p):
+    """يحوّل صف الـ DB لنفس الشكل القديم، فباقي الصفحة والصفحات التانية ما تتأثرش."""
+    p = dict(p)
+    p["price_val"] = int(p["price"])
+    p["price"] = f"{p['price_val']:,}"
+    p["desc"] = p.pop("description", "") or ""
+    if isinstance(p.get("area"), float) and p["area"].is_integer():
+        p["area"] = int(p["area"])
+    return p
 
 
 @st.cache_data
 def load_properties(mtime):
-    with open(DATA_FILE, encoding="utf-8") as f:
-        return json.load(f)
+    return [_to_legacy(p) for p in db.search_properties(sort="newest")]
 
 
-if not DATA_FILE.exists():
-    st.error("ملف البيانات غير موجود. تأكد من وجود data/properties.json في مجلد المشروع.")
+if not DB_FILE.exists():
+    st.error("قاعدة البيانات غير موجودة. شغّل: python migrate.py")
     st.stop()
 
-all_props = load_properties(DATA_FILE.stat().st_mtime)
+all_props = load_properties(DB_FILE.stat().st_mtime)
 st.session_state.properties_list = all_props
 st.session_state.setdefault("favorites", [])
 st.session_state.setdefault("prop_page", 1)

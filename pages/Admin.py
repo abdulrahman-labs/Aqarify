@@ -1,19 +1,12 @@
-import hmac
 import json
-import os
 import re
-import shutil
 from collections import Counter
-from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except Exception:
-    pass
+import db
+import session
 
 st.set_page_config(
     page_title="لوحة الإدارة | Aqarify",
@@ -22,9 +15,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_FILE = ROOT / "data" / "properties.json"
-TICKETS_FILE = ROOT / "data" / "tickets.json"
 ss = st.session_state
 
 # ═══════════════════════════════════════════════════════════════
@@ -109,7 +99,6 @@ st.markdown("""
     .badge { display: inline-block; border-radius: 20px; padding: 2px 12px; font-size: 12px; font-weight: 700; border: 1px solid var(--color-border); background: var(--color-white); white-space: nowrap; }
     .badge.new { background: var(--color-dark); color: var(--color-accent); border-color: var(--color-dark); }
     .badge.prog { background: #F6EBCB; border-color: #F6EBCB; }
-    .login-icon { width: 64px; height: 64px; border-radius: 18px; background: var(--color-dark); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 14px; }
 
     /* ─── التبويبات ─── */
     .stTabs [data-baseweb="tab-list"] { gap: 12px; border-bottom: none; }
@@ -139,6 +128,26 @@ st.markdown("""
     }
 
     @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            max-width: 100% !important;
+        }
+        .hero-title-main { font-size: 28px !important; }
+        .brand-logo-text { font-size: 26px !important; }
+        .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+        .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
+            justify-content: center !important; gap: 12px !important;
+        }
+        /* إجبار أعمدة Streamlit على النزول تحت بعضها على الموبايل */
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -169,52 +178,15 @@ with col_nav:
 st.markdown("<hr style='margin: 10px 0 25px 0; border-color: var(--color-border);'>", unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════
-# 3) تسجيل الدخول
+# 3) الحماية: لازم مستخدم مسجّل دخول بصلاحية admin
 # ═══════════════════════════════════════════════════════════════
-def admin_password():
-    pw = os.environ.get("ADMIN_PASSWORD", "")
-    if pw:
-        return pw, False
-    try:
-        pw = st.secrets.get("ADMIN_PASSWORD", "")
-    except Exception:
-        pw = ""
-    return (pw, False) if pw else ("admin123", True)
+current_user = session.require_role("admin")
 
-
-PASSWORD, IS_DEFAULT_PW = admin_password()
-MAX_FAILS = 5
-
-
-def do_logout():
-    ss.is_admin_logged_in = False
-
-
-if not ss.get("is_admin_logged_in", False):
-    _, mid, _ = st.columns([1, 1.2, 1])
-    with mid:
-        st.markdown('<div class="box" style="text-align:center;"><div class="login-icon"><i class="fa-solid fa-lock"></i></div>'
-                    '<div style="font-size:22px;font-weight:800;">دخول الإدارة</div>'
-                    '<div style="color:var(--color-text-muted);font-size:14px;margin-top:4px;">هذه الصفحة مخصصة لفريق Aqarify فقط.</div></div>',
-                    unsafe_allow_html=True)
-        locked = ss.get("admin_fails", 0) >= MAX_FAILS
-        with st.form("login_form"):
-            pw_in = st.text_input("كلمة المرور", type="password", disabled=locked)
-            ok = st.form_submit_button("تسجيل الدخول", icon=":material/login:", type="primary",
-                                       width="stretch", disabled=locked)
-        if ok:
-            if hmac.compare_digest(pw_in.encode(), PASSWORD.encode()):
-                ss.is_admin_logged_in = True
-                ss.admin_fails = 0
-                st.rerun()
-            else:
-                ss.admin_fails = ss.get("admin_fails", 0) + 1
-                st.error("كلمة المرور غير صحيحة.")
-        if locked:
-            st.warning("تم تجاوز عدد المحاولات المسموح. أعد تحميل الصفحة للمحاولة من جديد.")
-        if IS_DEFAULT_PW:
-            st.caption("تنبيه: تستخدم كلمة المرور الافتراضية. عيّن ADMIN_PASSWORD في ملف .env أو secrets.toml.")
+if not db.DB_FILE.exists():
+    st.error("قاعدة البيانات غير موجودة. شغّل: python migrate.py")
     st.stop()
+
+db.init_tickets_table()
 
 # ═══════════════════════════════════════════════════════════════
 # 4) منطق البيانات
@@ -226,26 +198,15 @@ TK_STATUSES = ["جديدة", "قيد المتابعة", "مكتملة"]
 DEFAULT_IMG = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
 
 
-def read_json(path):
-    if not path.exists():
-        return []
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return []
-
-
-def write_json(path, items, backup=False):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if backup and path.exists():
-        shutil.copy(path, path.with_name(path.stem + ".backup.json"))
-    tmp = path.with_name(path.name + ".tmp")
-    tmp.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
-    tmp.replace(path)
-
-
-def next_id(items):
-    return max((p["id"] for p in items), default=0) + 1
+def to_legacy(p):
+    """يحوّل صف الـ DB لنفس الشكل اللي باقي الصفحة متعودة عليه (price_val, price, desc)."""
+    p = dict(p)
+    p["price_val"] = int(p["price"])
+    p["price"] = f"{p['price_val']:,}"
+    p["desc"] = p.pop("description", "") or ""
+    if isinstance(p.get("area"), float) and p["area"].is_integer():
+        p["area"] = int(p["area"])
+    return p
 
 
 def build_unit(uid, f):
@@ -276,10 +237,8 @@ def validate(f):
     return None
 # ===== LOGIC END =====
 
-props = read_json(DATA_FILE)
-tickets = read_json(TICKETS_FILE)
-for t in tickets:
-    t.setdefault("status", "جديدة")
+props = sorted((to_legacy(p) for p in db.search_properties(sort="newest")), key=lambda p: p["id"])
+tickets = [{**t, "pk": t["id"], "id": t["code"]} for t in db.list_tickets()]
 BY_ID = {p["id"]: p for p in props}
 
 TYPES = sorted({p["type"] for p in props} | {"شقة", "فيلا", "دوبلكس", "تاون هاوس", "بنتهاوس", "شاليه", "استوديو"})
@@ -307,12 +266,11 @@ def money(v):
 h1, h2 = st.columns([4, 1])
 with h1:
     st.markdown("<h2 style='font-weight:800; font-size:32px; margin-bottom:2px;'>لوحة الإدارة</h2>"
-                "<p style='color:var(--color-text-muted); font-size:16px;'>إدارة الوحدات، متابعة التذاكر، ومؤشرات الأداء في مكان واحد.</p>",
+                f"<p style='color:var(--color-text-muted); font-size:16px;'>مرحباً {current_user['name']}، "
+                "إدارة الوحدات ومتابعة التذاكر ومؤشرات الأداء في مكان واحد.</p>",
                 unsafe_allow_html=True)
 with h2:
-    st.button("تسجيل الخروج", icon=":material/logout:", on_click=do_logout, width="stretch")
-if IS_DEFAULT_PW:
-    st.warning("تستخدم كلمة المرور الافتراضية. عيّن ADMIN_PASSWORD في ملف .env قبل التسليم.")
+    st.button("تسجيل الخروج", icon=":material/logout:", on_click=session.logout_user, width="stretch")
 show_flash()
 
 tab_dash, tab_units, tab_tickets = st.tabs(["المؤشرات", "إدارة الوحدات", "التذاكر"])
@@ -369,7 +327,7 @@ with tab_dash:
                 + (rows or "<div style='color:var(--color-text-muted)'>لا توجد تذاكر بعد.</div>") + "</div>", unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════
-# 7) إدارة الوحدات
+# 7) إدارة الوحدات (على قاعدة البيانات)
 # ═══════════════════════════════════════════════════════════════
 def unit_form(form_key, u=None):
     d = u or {}
@@ -429,16 +387,15 @@ with tab_units:
                            file_name="properties_backup.json", mime="application/json", icon=":material/download:")
 
     with sub_add:
-        st.caption(f"رقم الوحدة الجديدة سيكون #{next_id(props)}")
+        st.caption(f"رقم الوحدة الجديدة سيكون #{db.next_property_id()}")
         data = unit_form("add_form")
         if data:
             err = validate(data)
             if err:
                 st.error(err)
             else:
-                props.append(build_unit(next_id(props), data))
-                write_json(DATA_FILE, props, backup=True)
-                flash("success", "تمت إضافة الوحدة وستظهر في المعرض فوراً.")
+                new_id = db.add_property(build_unit(None, data))
+                flash("success", f"تمت إضافة الوحدة #{new_id}، وستظهر في المعرض والمستشار فوراً.")
                 st.rerun()
 
     with sub_edit:
@@ -457,18 +414,20 @@ with tab_units:
                 if err:
                     st.error(err)
                 else:
-                    idx = next(i for i, p in enumerate(props) if p["id"] == uid)
-                    props[idx] = build_unit(uid, data)
-                    write_json(DATA_FILE, props, backup=True)
-                    flash("success", f"تم تحديث الوحدة #{uid}.")
+                    if db.update_property(uid, build_unit(uid, data)):
+                        flash("success", f"تم تحديث الوحدة #{uid}.")
+                    else:
+                        flash("error", f"الوحدة #{uid} غير موجودة.")
                     st.rerun()
 
             st.markdown("<div class='box-title' style='margin-top:18px;'><i class='fa-solid fa-trash'></i> حذف الوحدة</div>", unsafe_allow_html=True)
             sure = st.checkbox(f"أؤكد رغبتي في حذف الوحدة #{uid} نهائياً", key=f"del_ok_{uid}")
             if st.button("حذف الوحدة", icon=":material/delete:", disabled=not sure, key=f"del_btn_{uid}"):
-                props = [p for p in props if p["id"] != uid]
-                write_json(DATA_FILE, props, backup=True)
-                flash("success", f"تم حذف الوحدة #{uid}. تتوفر نسخة احتياطية في data/properties.backup.json.")
+                backup = db.backup_db()
+                if db.delete_property(uid):
+                    flash("success", f"تم حذف الوحدة #{uid}. نسخة احتياطية: {backup.name if backup else '—'} (داخل فولدر backups).")
+                else:
+                    flash("error", f"الوحدة #{uid} غير موجودة.")
                 st.rerun()
 
 # ═══════════════════════════════════════════════════════════════
@@ -486,12 +445,16 @@ with tab_tickets:
         flt = st.selectbox("تصفية حسب الحالة", ["الكل"] + TK_STATUSES, key="tk_filter")
         shown = [t for t in tickets if flt == "الكل" or t["status"] == flt][::-1]
 
-        def prop_label(pid):
-            return f"#{pid} {BY_ID[pid]['title']}" if pid in BY_ID else "—"
+        def prop_label(t):
+            pid = t.get("property_id")
+            if not pid:
+                return "—"
+            title = t.get("property_title") or (BY_ID[pid]["title"] if pid in BY_ID else "")
+            return f"#{pid} {title}".strip()
 
         dft = pd.DataFrame([{
             "رقم التذكرة": t["id"], "الاسم": t["name"], "الهاتف": t["phone"], "نوع الطلب": t["topic"],
-            "الوحدة": prop_label(t.get("property_id")), "الحالة": t["status"],
+            "الوحدة": prop_label(t), "الحالة": t["status"],
             "التاريخ": t.get("created_at", ""), "ملاحظات": t.get("notes", ""),
         } for t in shown])
         st.dataframe(dft, width="stretch", hide_index=True, height=340)
@@ -502,18 +465,17 @@ with tab_tickets:
         tid = st.selectbox("اختر التذكرة", [t["id"] for t in tickets][::-1], key="tk_sel")
         cur_t = next(t for t in tickets if t["id"] == tid)
         st.markdown(f'<div class="box"><b>{cur_t["name"]}</b> · {cur_t["phone"]}<br>'
-                    f'<span style="color:var(--color-text-muted)">{cur_t["topic"]} · {prop_label(cur_t.get("property_id"))}</span><br>'
+                    f'<span style="color:var(--color-text-muted)">{cur_t["topic"]} · {prop_label(cur_t)}</span><br>'
                     f'{cur_t.get("notes", "") or "بدون ملاحظات"}</div>', unsafe_allow_html=True)
         new_status = st.selectbox("الحالة الجديدة", TK_STATUSES, index=TK_STATUSES.index(cur_t["status"]), key=f"tk_status_{tid}")
         b1, b2 = st.columns(2)
         with b1:
             if st.button("حفظ الحالة", icon=":material/check:", type="primary", width="stretch", key=f"tk_save_{tid}"):
-                cur_t["status"] = new_status
-                write_json(TICKETS_FILE, tickets)
+                db.update_ticket_status(cur_t["pk"], new_status)
                 flash("success", f"تم تحديث التذكرة {tid}.")
                 st.rerun()
         with b2:
             if st.button("حذف التذكرة", icon=":material/delete:", width="stretch", key=f"tk_del_{tid}"):
-                write_json(TICKETS_FILE, [t for t in tickets if t["id"] != tid])
+                db.delete_ticket(cur_t["pk"])
                 flash("success", f"تم حذف التذكرة {tid}.")
                 st.rerun()
