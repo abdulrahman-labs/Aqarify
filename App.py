@@ -326,7 +326,7 @@ st.markdown("""
 
     #MainMenu, footer {visibility: hidden;}
 
-/* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
+    /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
     @media (max-width: 768px) {
         .block-container {
             padding-top: 1rem !important;
@@ -340,7 +340,6 @@ st.markdown("""
         .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
             justify-content: center !important; gap: 12px !important;
         }
-        /* إجبار أعمدة Streamlit على النزول تحت بعضها على الموبايل */
         [data-testid="stHorizontalBlock"] {
             flex-direction: column !important;
             gap: 10px !important;
@@ -348,6 +347,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 # ─── 2. الشعار والهيدر العلوي ───
 col_header_right, col_header_left = st.columns([1.4, 3])
 
