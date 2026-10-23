@@ -1,10 +1,10 @@
 import calendar
-import json
 from datetime import date
-from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+
+import db
 
 st.set_page_config(
     page_title="حاسبة التمويل | Aqarify",
@@ -13,8 +13,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_FILE = ROOT / "data" / "properties.json"
+DB_FILE = db.DB_FILE
 
 # ═══════════════════════════════════════════════════════════════
 # 1) التنسيق الموحد
@@ -187,15 +186,26 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════
-# 2) البيانات
+# 2) البيانات (من قاعدة البيانات SQLite)
 # ═══════════════════════════════════════════════════════════════
+def _to_legacy(p):
+    """يحوّل صف الـ DB لنفس الشكل القديم (price نص منسّق، price_val رقم، desc)."""
+    p = dict(p)
+    p["price_val"] = int(p["price"])
+    p["price"] = f"{p['price_val']:,}"
+    p["desc"] = p.pop("description", "") or ""
+    if isinstance(p.get("area"), float) and p["area"].is_integer():
+        p["area"] = int(p["area"])
+    return p
+
+
 @st.cache_data
 def load_props(mtime):
-    with open(DATA_FILE, encoding="utf-8") as f:
-        return json.load(f)
+    items = [_to_legacy(p) for p in db.search_properties(sort="newest")]
+    return sorted(items, key=lambda p: p["id"])
 
 
-PROPS = load_props(DATA_FILE.stat().st_mtime) if DATA_FILE.exists() else st.session_state.get("properties_list", [])
+PROPS = load_props(DB_FILE.stat().st_mtime) if DB_FILE.exists() else st.session_state.get("properties_list", [])
 BY_ID = {p["id"]: p for p in PROPS}
 ss = st.session_state
 
