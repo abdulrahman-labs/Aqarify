@@ -5,6 +5,8 @@ import pandas as pd
 import streamlit as st
 
 import db
+import session
+from utils import company_tag, safe
 
 st.set_page_config(
     page_title="حاسبة التمويل | Aqarify",
@@ -12,6 +14,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+session.restore_login()  # يرجّع تسجيل الدخول بعد Refresh
 
 DB_FILE = db.DB_FILE
 
@@ -40,13 +44,13 @@ st.markdown("""
     [data-testid="stSidebar"], [data-testid="collapsedControl"],
     [data-testid="stSidebarCollapsedControl"] { display: none !important; }
     #MainMenu, footer { visibility: hidden; }
-    .block-container { padding-top: 2rem; max-width: 1280px; }
+    .block-container { padding-top: 7rem; max-width: 1280px; }
 
     /* ─── الشعار ─── */
     .brand-logo-link { display: inline-flex; align-items: center; gap: 14px; }
     .brand-icon-box {
-        background: #F0EFEA; color: var(--color-dark); width: 52px; height: 52px; border-radius: 14px;
-        border: 1px solid var(--color-border); box-shadow: 0 4px 12px rgba(20,22,28,.06);
+        background: var(--color-dark); color: var(--color-accent); width: 52px; height: 52px; border-radius: 14px;
+        border: 1px solid var(--color-dark); box-shadow: 0 6px 16px rgba(20,22,28,.18);
         display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
     }
     .brand-logo-text { font-size: 34px; font-weight: 800; color: var(--color-dark); line-height: 1; margin: 0; }
@@ -56,7 +60,7 @@ st.markdown("""
     /* ─── شريط التنقل ─── */
     .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
         display: flex !important; flex-direction: row !important; flex-wrap: wrap;
-        justify-content: flex-end; align-items: center; gap: 28px !important; padding-top: 10px;
+        justify-content: flex-end; align-items: center; gap: 22px !important; padding-top: 14px;
     }
     .st-key-topnav [data-testid="stElementContainer"],
     .st-key-topnav [data-testid="stPageLink"] { width: auto !important; flex: 0 0 auto !important; }
@@ -66,15 +70,16 @@ st.markdown("""
         color: var(--color-dark) !important; text-decoration: none !important; transition: color .2s ease;
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"] p {
-        font-size: 17px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
+        font-size: 16px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"]::before {
-        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; font-size: 16px; content: "\\f015";
+        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; font-size: 15px; width: 18px; text-align: center; content: "\\f015";
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Properties"]::before { content: "\\f64f"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Customer"]::before   { content: "\\f508"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Calculator"]::before { content: "\\f1ec"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Admin"]::before      { content: "\\f1de"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Company"]::before    { content: "\\f1ad"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"]:hover { color: var(--color-accent) !important; background: transparent !important; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Calculator"] { color: var(--color-accent) !important; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Calculator"]::after {
@@ -142,6 +147,19 @@ st.markdown("""
 
     .st-key-inputs_panel [data-testid="stNumberInput"] input { font-weight: 700; }
 
+    /* ─── اسم الشركة المالكة ─── */
+    .company-bar {
+        display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+        background: #FBFAF6; border-bottom: 1px solid var(--color-border);
+        font-size: 13px; font-weight: 700; color: var(--color-dark);
+    }
+    .company-pill {
+        display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px; padding: 4px 12px;
+        border: 1px solid var(--color-border); border-radius: 20px; background: var(--color-white);
+        font-size: 13px; font-weight: 700; color: var(--color-dark);
+    }
+    .company-bar i, .company-pill i { color: var(--color-accent); }
+
     /* ─── الأزرار الموحدة: عدّل هذا القسم فقط عند توحيد التصميم ─── */
     [data-testid="stBaseButton-secondary"], [data-testid="stBaseButton-primary"],
     [data-testid="stBaseButton-secondaryFormSubmit"], [data-testid="stBaseButton-primaryFormSubmit"],
@@ -165,7 +183,7 @@ st.markdown("""
     /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
     @media (max-width: 768px) {
         .block-container {
-            padding-top: 1rem !important;
+            padding-top: 5rem !important;
             padding-left: 1rem !important;
             padding-right: 1rem !important;
             max-width: 100% !important;
@@ -188,35 +206,28 @@ st.markdown("""
 # ═══════════════════════════════════════════════════════════════
 # 2) البيانات (من قاعدة البيانات SQLite)
 # ═══════════════════════════════════════════════════════════════
-def _to_legacy(p):
-    """يحوّل صف الـ DB لنفس الشكل القديم (price نص منسّق، price_val رقم، desc)."""
-    p = dict(p)
-    p["price_val"] = int(p["price"])
-    p["price"] = f"{p['price_val']:,}"
-    p["desc"] = p.pop("description", "") or ""
-    if isinstance(p.get("area"), float) and p["area"].is_integer():
-        p["area"] = int(p["area"])
-    return p
-
-
 @st.cache_data
-def load_props(mtime):
-    items = [_to_legacy(p) for p in db.search_properties(sort="newest")]
-    return sorted(items, key=lambda p: p["id"])
+def load_props(version):
+    return db.list_properties_legacy()
 
 
-PROPS = load_props(DB_FILE.stat().st_mtime) if DB_FILE.exists() else st.session_state.get("properties_list", [])
+PROPS = load_props(db.properties_version()) if DB_FILE.exists() else st.session_state.get("properties_list", [])
 BY_ID = {p["id"]: p for p in PROPS}
 ss = st.session_state
 
 # ═══════════════════════════════════════════════════════════════
 # 3) الهيدر الموحد
 # ═══════════════════════════════════════════════════════════════
-col_logo, col_nav = st.columns([1.5, 2.6])
+import base64, os
+LOGO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "logo.png")
+with open(LOGO_PATH, "rb") as _f:
+    LOGO_B64 = base64.b64encode(_f.read()).decode()
+
+col_logo, col_nav = st.columns([1.1, 3])
 with col_logo:
-    st.markdown("""
+    st.markdown(f"""
     <div class="brand-logo-link">
-        <div class="brand-icon-box"><i class="fa-solid fa-building-columns"></i></div>
+        <img src="data:image/png;base64,{LOGO_B64}" alt="Aqarify" style="height:52px;width:auto;flex-shrink:0;">
         <div>
             <div class="brand-logo-text">Aqarify<span class="brand-logo-dot">.</span></div>
             <span class="brand-logo-sub">بيتك القادم يبدأ من هنا</span>
@@ -232,6 +243,8 @@ with col_nav:
         st.page_link("pages/Calculator.py", label="حاسبة التمويل")
         if ss.get("is_admin_logged_in", False):
             st.page_link("pages/Admin.py", label="لوحة الإدارة")
+        if (st.session_state.get("user") or {}).get("role") == "company":
+            st.page_link("pages/Company.py", label="لوحة الشركة")
 
 st.markdown("<hr style='margin: 10px 0 25px 0; border-color: var(--color-border);'>", unsafe_allow_html=True)
 
@@ -343,20 +356,21 @@ with col_in:
 
     prop = BY_ID.get(ss.calc_prop)
     if prop:
+        sp = safe(prop)
         st.markdown(
             '<div class="box">'
             '<div class="box-title"><i class="fa-solid fa-house-circle-check"></i> الوحدة المختارة</div>'
-            f'<div class="sel-img" style="background-image:url({prop["main_image"]})"></div>'
-            f'<div class="sel-title">{prop["title"]}</div>'
-            f'<div class="sel-loc"><i class="fa-solid fa-location-dot"></i> {prop["location"]} · وحدة #{prop["id"]}</div>'
-            f'<div class="sel-price">{prop["price"]} ج.م</div>'
+            f'{company_tag(prop.get("company_name"), "pill")}<div class="sel-img" style="background-image:url({sp["main_image"]})"></div>'
+            f'<div class="sel-title">{sp["title"]}</div>'
+            f'<div class="sel-loc"><i class="fa-solid fa-location-dot"></i> {sp["location"]} · وحدة #{sp["id"]}</div>'
+            f'<div class="sel-price">{sp["price"]} ج.م</div>'
             '<div class="sel-specs">'
-            f'<span><i class="fa-solid fa-bed"></i> {prop["beds"]} غرف</span>'
-            f'<span><i class="fa-solid fa-bath"></i> {prop["baths"]} حمام</span>'
-            f'<span><i class="fa-solid fa-ruler-combined"></i> {prop["area"]} م²</span></div>'
-            f'<div><span class="chip">{prop["type"]}</span><span class="chip">{prop["finishing"]}</span>'
-            f'<span class="chip">{prop["status"]}</span><span class="chip">استلام: {prop["delivery"]}</span></div>'
-            f'<div style="font-size:13px;color:var(--color-text-muted);margin-top:10px;">سعر المتر: {money(prop["price_val"] / prop["area"])} ج.م</div>'
+            f'<span><i class="fa-solid fa-bed"></i> {sp["beds"]} غرف</span>'
+            f'<span><i class="fa-solid fa-bath"></i> {sp["baths"]} حمام</span>'
+            f'<span><i class="fa-solid fa-ruler-combined"></i> {sp["area"]} م²</span></div>'
+            f'<div><span class="chip">{sp["type"]}</span><span class="chip">{sp["finishing"]}</span>'
+            f'<span class="chip">{sp["status"]}</span><span class="chip">استلام: {sp["delivery"]}</span></div>'
+            f'<div style="font-size:13px;color:var(--color-text-muted);margin-top:10px;">سعر المتر: {money(sp["price_val"] / sp["area"])} ج.م</div>'
             '</div>',
             unsafe_allow_html=True,
         )

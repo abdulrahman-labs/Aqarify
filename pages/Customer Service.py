@@ -1,11 +1,15 @@
 import os
 import re
+import time
+from collections import deque
 from urllib.parse import quote
 
 import streamlit as st
 import streamlit.components.v1 as components
 
 import db
+import session
+from utils import company_tag, safe
 
 try:
     from dotenv import load_dotenv
@@ -29,6 +33,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+session.restore_login()  # يرجّع تسجيل الدخول بعد Refresh
 
 DB_FILE = db.DB_FILE
 WHATSAPP_NUMBER = "201000000000"   # ← غيّره برقمك الحقيقي
@@ -60,13 +66,13 @@ st.markdown("""
     [data-testid="stSidebar"], [data-testid="collapsedControl"],
     [data-testid="stSidebarCollapsedControl"] { display: none !important; }
     #MainMenu, footer { visibility: hidden; }
-    .block-container { padding-top: 2rem; max-width: 1280px; }
+    .block-container { padding-top: 7rem; max-width: 1280px; }
 
     /* ─── الشعار ─── */
     .brand-logo-link { display: inline-flex; align-items: center; gap: 14px; }
     .brand-icon-box {
-        background: #F0EFEA; color: var(--color-dark); width: 52px; height: 52px; border-radius: 14px;
-        border: 1px solid var(--color-border); box-shadow: 0 4px 12px rgba(20,22,28,.06);
+        background: var(--color-dark); color: var(--color-accent); width: 52px; height: 52px; border-radius: 14px;
+        border: 1px solid var(--color-dark); box-shadow: 0 6px 16px rgba(20,22,28,.18);
         display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
     }
     .brand-logo-text { font-size: 34px; font-weight: 800; color: var(--color-dark); line-height: 1; margin: 0; }
@@ -76,7 +82,7 @@ st.markdown("""
     /* ─── شريط التنقل ─── */
     .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
         display: flex !important; flex-direction: row !important; flex-wrap: wrap;
-        justify-content: flex-end; align-items: center; gap: 28px !important; padding-top: 10px;
+        justify-content: flex-end; align-items: center; gap: 22px !important; padding-top: 14px;
     }
     .st-key-topnav [data-testid="stElementContainer"],
     .st-key-topnav [data-testid="stPageLink"] { width: auto !important; flex: 0 0 auto !important; }
@@ -86,15 +92,16 @@ st.markdown("""
         color: var(--color-dark) !important; text-decoration: none !important; transition: color .2s ease;
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"] p {
-        font-size: 17px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
+        font-size: 16px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"]::before {
-        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; font-size: 16px; content: "\\f015";
+        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; font-size: 15px; width: 18px; text-align: center; content: "\\f015";
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Properties"]::before { content: "\\f64f"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Customer"]::before   { content: "\\f508"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Calculator"]::before { content: "\\f1ec"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Admin"]::before      { content: "\\f1de"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Company"]::before    { content: "\\f1ad"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"]:hover { color: var(--color-accent) !important; background: transparent !important; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Customer"] { color: var(--color-accent) !important; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Customer"]::after {
@@ -159,15 +166,23 @@ st.markdown("""
     .st-key-scroll_helper { height: 0 !important; margin: 0 !important; overflow: hidden !important; }
 
     /* ─── التبويبات ─── */
-    .stTabs [data-baseweb="tab-list"] { gap: 12px; border-bottom: none; }
-    .stTabs [data-baseweb="tab"] {
-        height: 46px; background: var(--color-white); border: 1px solid var(--color-border);
-        border-radius: 12px; padding: 0 22px;
+    .stTabs [role="tablist"] {
+        display: inline-flex; width: fit-content; max-width: 100%; gap: 4px; padding: 4px; margin-bottom: 12px;
+        background: rgba(255,255,255,.78); border: 1px solid var(--color-border) !important; border-radius: 14px;
+        box-shadow: 0 6px 20px rgba(20,22,28,.05);
     }
-    .stTabs [data-baseweb="tab"] p { font-weight: 800; }
-    .stTabs [aria-selected="true"] { background: var(--color-dark) !important; border-color: var(--color-dark); }
-    .stTabs [aria-selected="true"] p { color: var(--color-accent) !important; }
-    .stTabs [data-baseweb="tab-highlight"], .stTabs [data-baseweb="tab-border"] { display: none; }
+    .stTabs [role="tablist"] > div:empty, .stTabs [data-baseweb="tab-highlight"], .stTabs [data-baseweb="tab-border"] { display: none !important; }
+    .stTabs [role="tab"] {
+        height: 38px; padding: 0 18px; border: none !important; border-radius: 10px;
+        background: transparent !important; color: var(--color-dark); transition: all .22s ease;
+    }
+    .stTabs [role="tab"] p { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 700; color: inherit; }
+    .stTabs [role="tab"]:hover { background: rgba(201,162,75,.14) !important; }
+    .stTabs [role="tab"][aria-selected="true"] {
+        background: linear-gradient(135deg, #23262F, #14161C) !important;
+        box-shadow: 0 5px 12px rgba(20,22,28,.22), inset 0 0 0 1px rgba(201,162,75,.5);
+    }
+    .stTabs [role="tab"][aria-selected="true"] p, .stTabs [role="tab"][aria-selected="true"] [data-testid="stIconMaterial"] { color: var(--color-accent) !important; }
 
     /* ─── واتساب والتواصل ─── */
     .wa-btn {
@@ -181,6 +196,19 @@ st.markdown("""
     .info-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 14px; }
     .info-row i { color: var(--color-accent); width: 18px; margin-top: 4px; }
     .info-row b { display: block; font-size: 13px; color: var(--color-text-muted); font-weight: 600; }
+
+    /* ─── اسم الشركة المالكة ─── */
+    .company-bar {
+        display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+        background: #FBFAF6; border-bottom: 1px solid var(--color-border);
+        font-size: 13px; font-weight: 700; color: var(--color-dark);
+    }
+    .company-pill {
+        display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px; padding: 4px 12px;
+        border: 1px solid var(--color-border); border-radius: 20px; background: var(--color-white);
+        font-size: 13px; font-weight: 700; color: var(--color-dark);
+    }
+    .company-bar i, .company-pill i { color: var(--color-accent); }
 
     /* ─── الأزرار الموحدة ─── */
     [data-testid="stBaseButton-secondary"], [data-testid="stBaseButton-primary"],
@@ -201,8 +229,10 @@ st.markdown("""
     }
     /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
     @media (max-width: 768px) {
+        .stTabs [role="tablist"] { width: 100%; }
+        .stTabs [role="tab"] { flex: 1; justify-content: center; padding: 0 8px; }
         .block-container {
-            padding-top: 1rem !important;
+            padding-top: 5rem !important;
             padding-left: 1rem !important;
             padding-right: 1rem !important;
             max-width: 100% !important;
@@ -225,25 +255,13 @@ st.markdown("""
 # ═══════════════════════════════════════════════════════════════
 # 2) البيانات (من قاعدة البيانات SQLite)
 # ═══════════════════════════════════════════════════════════════
-def _to_legacy(p):
-    """يحوّل صف الـ DB لنفس الشكل القديم (price نص منسّق، price_val رقم، desc)."""
-    p = dict(p)
-    p["price_val"] = int(p["price"])
-    p["price"] = f"{p['price_val']:,}"
-    p["desc"] = p.pop("description", "") or ""
-    if isinstance(p.get("area"), float) and p["area"].is_integer():
-        p["area"] = int(p["area"])
-    return p
-
-
 @st.cache_data
-def load_props(mtime):
-    items = [_to_legacy(p) for p in db.search_properties(sort="newest")]
-    return sorted(items, key=lambda p: p["id"])
+def load_props(version):
+    return db.list_properties_legacy()
 
 
 if DB_FILE.exists():
-    PROPS = load_props(DB_FILE.stat().st_mtime)
+    PROPS = load_props(db.properties_version())
 else:
     PROPS = st.session_state.get("properties_list", [])
 st.session_state.properties_list = PROPS
@@ -251,11 +269,16 @@ st.session_state.properties_list = PROPS
 # ═══════════════════════════════════════════════════════════════
 # 3) الهيدر الموحد
 # ═══════════════════════════════════════════════════════════════
-col_logo, col_nav = st.columns([1.5, 2.6])
+import base64, os
+LOGO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "logo.png")
+with open(LOGO_PATH, "rb") as _f:
+    LOGO_B64 = base64.b64encode(_f.read()).decode()
+
+col_logo, col_nav = st.columns([1.1, 3])
 with col_logo:
-    st.markdown("""
+    st.markdown(f"""
     <div class="brand-logo-link">
-        <div class="brand-icon-box"><i class="fa-solid fa-building-columns"></i></div>
+        <img src="data:image/png;base64,{LOGO_B64}" alt="Aqarify" style="height:52px;width:auto;flex-shrink:0;">
         <div>
             <div class="brand-logo-text">Aqarify<span class="brand-logo-dot">.</span></div>
             <span class="brand-logo-sub">بيتك القادم يبدأ من هنا</span>
@@ -271,6 +294,8 @@ with col_nav:
         st.page_link("pages/Calculator.py", label="حاسبة التمويل")
         if st.session_state.get("is_admin_logged_in", False):
             st.page_link("pages/Admin.py", label="لوحة الإدارة")
+        if (st.session_state.get("user") or {}).get("role") == "company":
+            st.page_link("pages/Company.py", label="لوحة الشركة")
 
 st.markdown("<hr style='margin: 10px 0 25px 0; border-color: var(--color-border);'>", unsafe_allow_html=True)
 
@@ -315,7 +340,7 @@ def money(v):
 
 
 def p_line(p):
-    return f"**#{p['id']} {p['title']}** — {money(p['price_val'])} ج.م · {p['area']} م² · {p['beds']} غرف · {p['location']}"
+    return f"**#{p['id']} {p['title']}** — {money(p['price_val'])} ج.م · {p['area']} م² · {p['beds']} غرف · {p['location']}" + (f" · {p['company_name']}" if p.get("company_name") else "")
 
 
 CITY_ALIASES = [("مصر الجديده", "مصر الجديدة"), ("تجمع", "التجمع الخامس"), ("زايد", "الشيخ زايد"),
@@ -323,6 +348,37 @@ CITY_ALIASES = [("مصر الجديده", "مصر الجديدة"), ("تجمع",
                 ("شروق", "الشروق"), ("نصر", "مدينة نصر"), ("اكتوبر", "6 أكتوبر")]
 TYPE_ALIASES = [("تاون", "تاون هاوس"), ("بنت", "بنتهاوس"), ("دوبلكس", "دوبلكس"), ("ستوديو", "استوديو"),
                 ("شاليه", "شاليه"), ("فيلا", "فيلا"), ("فلل", "فيلا"), ("شق", "شقة")]
+
+
+FINISH_ALIASES = [("الترا", "ألترا سوبر لوكس"), ("سوبر", "سوبر لوكس"), ("نصف تشطيب", "نصف تشطيب"),
+                  ("نص تشطيب", "نصف تشطيب"), ("تشطيب كامل", "تشطيب كامل"), ("كامل التشطيب", "تشطيب كامل")]
+FEATURE_ALIASES = [
+    (("مسبح", "سباحة"), "حمام سباحة"), (("حديقة", "جنينة"), "حديقة خاصة"), (("جراج", "جاراج"), "جراج خاص"),
+    (("مصعد", "أسانسير"), "مصعد"), (("تكييف", "تكيف"), "تكييف مركزي"), (("نادي رياضي", "جيم"), "نادي رياضي"),
+    (("نادي شاطئي",), "نادي شاطئي"), (("شاطئ خاص",), "شاطئ خاص"), (("ملعب",), "ملعب أطفال"),
+    (("خادمة",), "غرفة خادمة"), (("مسطحات", "مساحات خضراء", "خضراء"), "مسطحات خضراء"),
+    (("تجارية", "تجاري"), "منطقة تجارية"), (("كريستال", "لاجون"), "كريستال لاجون"),
+]
+_AR = "\u0621-\u064A"
+_SECURITY = re.compile(rf"(?<![{_AR}])امن(?![{_AR}])")
+GENERIC_WORDS = {norm(w) for w in ("شركة", "للتطوير", "التطوير", "والتطوير", "العقاري", "العقارية", "للتعمير", "التعمير",
+                                   "للتنمية", "التنمية", "للاستثمار", "الاستثمار", "للمقاولات", "والمقاولات", "المقاولات")}
+COMMON_WORDS = ({w for k, c in CITY_ALIASES for w in norm(c).split()} | {norm(k) for k, _ in CITY_ALIASES + TYPE_ALIASES}
+                | {"مصر"})
+
+
+def match_company(t):
+    """اسم الشركة اللي ذكرها العميل (بالاسم كامل أو بكلمته المميزة)، أو None."""
+    words = set(re.findall(rf"[{_AR}0-9a-z]+", t))
+    words |= {w[1:] for w in words if len(w) > 3 and w[0] in "لبوكف"}
+    best, best_score = None, 0
+    for name in sorted({p["company_name"] for p in PROPS if p.get("company_name")}):
+        n = norm(name)
+        tokens = [w for w in n.split() if len(w) >= 3 and w not in GENERIC_WORDS and w not in COMMON_WORDS]
+        score = 99 if n in t else sum(1 for w in tokens if w in words)
+        if score > best_score:
+            best, best_score = name, score
+    return best
 
 
 def parse_query(text):
@@ -352,10 +408,30 @@ def parse_query(text):
         f["max_price"] = v * 1e6
     elif "مليونين" in t:
         f["max_price"] = 2e6
+    else:
+        m = re.search(r"(\d+(?:\.\d+)?)\s*(?:الف|الاف)", t)
+        if m:
+            f["max_price"] = float(m.group(1)) * 1000
+        else:
+            m = re.search(r"(\d{1,3}(?:,\d{3})+|\d{6,})", t)
+            if m and 100_000 <= float(m.group(1).replace(",", "")) <= 500_000_000:
+                f["max_price"] = float(m.group(1).replace(",", ""))
     if "جاهز" in t or "فوري" in t:
         f["ready"] = True
     elif "تحت الانشاء" in t:
         f["ready"] = False
+    for key, fin in FINISH_ALIASES:
+        if norm(key) in t:
+            f["finishing"] = fin
+            break
+    feats = [feat for words, feat in FEATURE_ALIASES if any(norm(w) in t for w in words)]
+    if _SECURITY.search(t):
+        feats.append("أمن على مدار الساعة")
+    if feats:
+        f["features"] = feats
+    company = match_company(t)
+    if company:
+        f["company"] = company
     if any(w in t for w in ("ارخص", "اقل سعر", "اوفر")):
         f["sort"] = "price_asc"
     elif any(w in t for w in ("اغلي", "افخم", "اعلي سعر")):
@@ -368,7 +444,8 @@ def parse_query(text):
 
 
 def has_filters(f):
-    return bool(f and (f.get("city") or f.get("type") or f.get("beds") or f.get("max_price") or f.get("sort")))
+    return bool(f and (f.get("city") or f.get("type") or f.get("beds") or f.get("max_price") or f.get("sort")
+                       or f.get("company") or f.get("finishing") or f.get("features") or f.get("ready") is not None))
 
 
 def run_search(f):
@@ -385,6 +462,12 @@ def run_search(f):
         if f.get("ready") is True and "جاهز" not in norm(p.get("status", "جاهز")):
             continue
         if f.get("ready") is False and "جاهز" in norm(p.get("status", "جاهز")):
+            continue
+        if f.get("company") and p.get("company_name") != f["company"]:
+            continue
+        if f.get("finishing") and p.get("finishing") != f["finishing"]:
+            continue
+        if f.get("features") and not all(x in p.get("features", []) for x in f["features"]):
             continue
         res.append(p)
     s = f.get("sort")
@@ -406,20 +489,18 @@ def search_with_relax(f):
     if res:
         return res, ""
     if f.get("max_price"):
-        g = dict(f, max_price=f["max_price"] * 1.25)
-        res = run_search(g)
+        res = run_search(dict(f, max_price=f["max_price"] * 1.25))
         if res:
             return res, "لا توجد وحدات مطابقة تماماً، وهذه أقرب الخيارات وتتجاوز الميزانية بنسبة بسيطة (حتى 25%)"
-    if f.get("beds"):
-        g = {k: v for k, v in f.items() if k != "beds"}
-        res = run_search(g)
-        if res:
-            return res, "لا توجد وحدات بنفس عدد الغرف، وهذه أقرب البدائل"
-    if f.get("city"):
-        g = {k: v for k, v in f.items() if k != "city"}
-        res = run_search(g)
-        if res:
-            return res, "لا توجد وحدات مطابقة في هذه المنطقة، وهذه بدائل في مناطق أخرى"
+    for key, note in (("beds", "لا توجد وحدات بنفس عدد الغرف، وهذه أقرب البدائل"),
+                      ("features", "لا توجد وحدات بنفس المميزات المطلوبة، وهذه أقرب البدائل"),
+                      ("finishing", "لا توجد وحدات بنفس مستوى التشطيب، وهذه أقرب البدائل"),
+                      ("city", "لا توجد وحدات مطابقة في هذه المنطقة، وهذه بدائل في مناطق أخرى"),
+                      ("company", "لا توجد وحدات مطابقة لدى هذه الشركة، وهذه بدائل من شركات أخرى")):
+        if f.get(key):
+            res = run_search({k: v for k, v in f.items() if k != key})
+            if res:
+                return res, note
     return [], ""
 
 
@@ -535,6 +616,7 @@ SHORTLIST_SIZE = 5
 def shortlist(text, active, history, n=SHORTLIST_SIZE):
     """بحث محلي يرجّع أقرب n وحدات لسؤال العميل. Gemini ما بيشوفش غيرها."""
     picked = []
+    note = ""
 
     def add(p):
         if len(picked) >= n:
@@ -562,7 +644,9 @@ def shortlist(text, active, history, n=SHORTLIST_SIZE):
     # 3) بحث بالفلاتر المفهومة من السؤال
     f = parse_query(text)
     if has_filters(f):
-        recs, _ = search_with_relax(f)
+        recs, note = search_with_relax(f)
+        if not recs:
+            note = "لا توجد أي وحدة تطابق طلب العميل، فوضّح ذلك له بدل ترشيح وحدات غير مطابقة."
         for p in recs:
             add(p)
 
@@ -571,14 +655,15 @@ def shortlist(text, active, history, n=SHORTLIST_SIZE):
         for p in sorted(PROPS, key=lambda x: x["price_val"]):
             add(p)
 
-    return picked[:n]
+    return picked[:n], note
 
 
 def catalog_text(units):
     lines = []
     for p in units:
         lines.append(f"#{p['id']} | {p['type']} | {p['location']} | {p['price_val']:,} ج.م | "
-                     f"{p['area']} م² | {p['beds']} غرف | {p.get('status', '')}")
+                     f"{p['area']} م² | {p['beds']} غرف | {p.get('status', '')} | تشطيب: {p.get('finishing', '')} | "
+                     f"مميزات: {'، '.join(p.get('features', []))} | الشركة: {p.get('company_name') or 'غير محددة'}")
     return "\n".join(lines)
 
 
@@ -590,7 +675,10 @@ SYSTEM_PROMPT = """أنت المستشار العقاري الذكي لمنصة 
 - إذا لم تتوفر معلومة في البيانات، قل بوضوح إنها غير متاحة، واطلب من العميل تحديد المنطقة أو الميزانية أو عدد الغرف لتحسين البحث.
 - للأسعار والتقسيط: المقدم التقديري 10% والباقي على 8 سنوات بدون فوائد، مع توضيح أن الأرقام تقديرية.
 - للمعاينة أو التواصل وجّه العميل إلى تبويب «الدعم البشري وحجز تذكرة» أو الواتساب.
-- جاوب على تحية العميل واستفساراته العامة بود ولطف ومهنية راقية."""
+- جاوب على تحية العميل واستفساراته العامة بود ولطف ومهنية راقية.
+- عند الترشيح اذكر اسم الشركة المالكة لكل وحدة.
+- لو جاءت مع السؤال «ملاحظة النظام» فاتبعها بدقة: إن قالت إن لا توجد وحدات مطابقة فقل ذلك بوضوح ولا تقدّم أي وحدة على أنها مطابقة، وإن قالت إن الوحدات أقرب بدائل فوضّح للعميل أين تختلف عن طلبه.
+- اجعل الرد مختصراً وواضحاً (حوالي 120 كلمة كحد أقصى)."""
 
 
 def get_api_key():
@@ -610,6 +698,42 @@ def get_api_key():
 # ─── كاش الردود: نفس السؤال المتكرر يتجاوب من غير ما نكلم الـ API ───
 CACHE_MAX = 300
 
+# ─── حد الاستخدام: يحمي مفتاح Gemini من الاستنزاف (الكاش مش بيتحسب) ───
+SESSION_MAX, SESSION_WINDOW = 12, 300   # 12 سؤال لكل جلسة كل 5 دقايق
+GLOBAL_PER_MIN = 40                     # وإجمالي الموقع في الدقيقة
+
+
+@st.cache_resource
+def _global_calls():
+    return deque()
+
+
+def llm_allowed():
+    """يرجّع (مسموح؟، ثواني الانتظار). بيسجّل الطلب لو مسموح."""
+    now = time.time()
+    mine = st.session_state.setdefault("llm_calls", [])
+    mine[:] = [x for x in mine if now - x < SESSION_WINDOW]
+    if len(mine) >= SESSION_MAX:
+        return False, int(SESSION_WINDOW - (now - mine[0])) + 1
+    glob = _global_calls()
+    while glob and now - glob[0] > 60:
+        glob.popleft()
+    if len(glob) >= GLOBAL_PER_MIN:
+        return False, int(60 - (now - glob[0])) + 1
+    mine.append(now)
+    glob.append(now)
+    return True, 0
+
+
+def explain_error(e):
+    """رسالة مفهومة للعميل بدل الخطأ التقني."""
+    msg = f"{type(e).__name__}: {e}".lower()
+    if any(k in msg for k in ("429", "quota", "resource_exhausted", "rate limit")):
+        return "المستشار الذكي مشغول حالياً."
+    if any(k in msg for k in ("timeout", "timed out", "connection", "network", "unavailable", "503", "dns")):
+        return "تعذر الاتصال بالمستشار الذكي حالياً."
+    return "المستشار الذكي غير متاح مؤقتاً."
+
 
 @st.cache_resource
 def _reply_cache():
@@ -617,6 +741,7 @@ def _reply_cache():
 
 
 def ask_gemini(text, active, history):
+    st.session_state.pop("llm_note", None)
     key = get_api_key()
 
     if not HAS_GEMINI:
@@ -641,6 +766,11 @@ def ask_gemini(text, active, history):
         st.session_state.pop("llm_error", None)
         return cache[ckey]
 
+    ok, wait = llm_allowed()
+    if not ok:
+        st.session_state["llm_note"] = f"المستشار الذكي مشغول حالياً، جرّب بعد {wait} ثانية. هذا رد من المحرك المحلي."
+        return None
+
     try:
         client = genai.Client(api_key=key)
 
@@ -653,7 +783,8 @@ def ask_gemini(text, active, history):
                 f"{active['beds']} غرف | {active.get('desc', '')}\n"
             )
 
-        units = shortlist(text, active, history)
+        units, search_note = shortlist(text, active, history)
+        note_line = f"ملاحظة النظام: {search_note}\n" if search_note else ""
 
         hist = "\n".join(
             ("العميل: " if m["role"] == "user" else "المستشار: ") + m["content"][:400]
@@ -663,6 +794,7 @@ def ask_gemini(text, active, history):
         prompt = (
             "أنسب الوحدات المتاحة في Aqarify لطلب العميل (نتيجة بحث، وليست كل الوحدات):\n"
             f"{catalog_text(units)}\n"
+            f"{note_line}"
             f"{ctx}\n"
             f"سجل المحادثة السابقة:\n{hist}\n\n"
             f"سؤال العميل الحالي:\n{text}\n\n"
@@ -691,6 +823,11 @@ def ask_gemini(text, active, history):
         reply = reply.strip()
         st.session_state.pop("llm_error", None)
 
+        # فحص التأريض: أي رقم وحدة في الرد لازم يكون من الوحدات اللي بعتناها، وإلا نرجع للمحرك المحلي
+        allowed = {p["id"] for p in units} | ({active["id"]} if active else set())
+        if {int(m) for m in re.findall(r"#(\d{1,3})", reply)} - allowed:
+            return None
+
         if cacheable:
             if len(cache) >= CACHE_MAX:
                 cache.clear()
@@ -700,6 +837,7 @@ def ask_gemini(text, active, history):
     except Exception as e:
         error_text = f"{type(e).__name__}: {e}"
         st.session_state["llm_error"] = error_text[:500]
+        st.session_state["llm_note"] = f"{explain_error(e)} هذا رد من المحرك المحلي."
         print(f"[Aqarify Gemini Error] {error_text}")
         return None
 
@@ -739,7 +877,11 @@ def respond(text):
         return reply.strip(), ids
 
     # Local replies remain the fallback when Gemini cannot answer.
-    return local_reply(text, active)
+    result = local_reply(text, active)
+    note = st.session_state.pop("llm_note", None)
+    if note:
+        return f"{result[0]}\n\n*{note}*", result[1]
+    return result
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -871,7 +1013,7 @@ def auto_scroll():
 
 
 def go_calculator(p):
-    st.session_state["selected_property_for_calc"] = {"title": p["title"], "price": p["price"]}
+    st.session_state["selected_property_for_calc"] = {"id": p["id"], "title": p["title"], "price": p["price"]}
     st.switch_page("pages/Calculator.py")
 
 
@@ -887,9 +1029,11 @@ def save_ticket(ticket):
 
 
 def mini_card(p):
+    comp = company_tag(p.get("company_name"))
+    p = safe(p)
     return (
         '<div class="mini-card">'
-        f'<div class="mini-img" style="background-image:url({p["main_image"]})"></div>'
+        f'{comp}<div class="mini-img" style="background-image:url({p["main_image"]})"></div>'
         '<div class="mini-body">'
         f'<div class="mini-title">{p["title"]}</div>'
         f'<div class="mini-loc"><i class="fa-solid fa-location-dot"></i> {p["location"]}</div>'
@@ -1034,21 +1178,22 @@ with tab_ai:
         history_box()
 
         if active:
-            finishing = active.get("finishing", "أولترا لوكس")
-            status = active.get("status", "جاهز")
-            chips_html = (f'<span class="chip">{active["type"]}</span><span class="chip">{finishing}</span>'
-                          f'<span class="chip">{status}</span><span class="chip">{floor_text(active)}</span>')
+            sa = safe(active)
+            finishing = sa.get("finishing", "أولترا لوكس")
+            status = sa.get("status", "جاهز")
+            chips_html = (f'<span class="chip">{sa["type"]}</span><span class="chip">{finishing}</span>'
+                          f'<span class="chip">{status}</span><span class="chip">{floor_text(sa)}</span>')
             st.markdown(
                 '<div class="box">'
                 '<div class="box-title"><i class="fa-solid fa-circle-info" style="color:var(--color-accent)"></i> الوحدة المختارة</div>'
-                f'<div class="sel-img" style="background-image:url({active["main_image"]})"></div>'
-                f'<div class="sel-title">{active["title"]}</div>'
-                f'<div class="sel-loc"><i class="fa-solid fa-location-dot"></i> {active["location"]} · وحدة #{active["id"]}</div>'
-                f'<div class="sel-price">{active["price"]} ج.م</div>'
+                f'{company_tag(active.get("company_name"), "pill")}<div class="sel-img" style="background-image:url({sa["main_image"]})"></div>'
+                f'<div class="sel-title">{sa["title"]}</div>'
+                f'<div class="sel-loc"><i class="fa-solid fa-location-dot"></i> {sa["location"]} · وحدة #{sa["id"]}</div>'
+                f'<div class="sel-price">{sa["price"]} ج.م</div>'
                 '<div class="sel-specs">'
-                f'<span><i class="fa-solid fa-bed"></i> {active["beds"]} غرف</span>'
-                f'<span><i class="fa-solid fa-bath"></i> {active["baths"]} حمام</span>'
-                f'<span><i class="fa-solid fa-ruler-combined"></i> {active["area"]} م²</span></div>'
+                f'<span><i class="fa-solid fa-bed"></i> {sa["beds"]} غرف</span>'
+                f'<span><i class="fa-solid fa-bath"></i> {sa["baths"]} حمام</span>'
+                f'<span><i class="fa-solid fa-ruler-combined"></i> {sa["area"]} م²</span></div>'
                 f'<div>{chips_html}</div></div>',
                 unsafe_allow_html=True,
             )

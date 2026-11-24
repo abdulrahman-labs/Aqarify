@@ -11,6 +11,13 @@ BACKUP_DIR = ROOT / "backups"
 
 SCHEMA = """
 PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS companies (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    name        TEXT NOT NULL UNIQUE COLLATE NOCASE,
+    logo_url    TEXT NOT NULL DEFAULT '',
+    description TEXT NOT NULL DEFAULT '',
+    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
 DROP TABLE IF EXISTS property_images;
 DROP TABLE IF EXISTS property_features;
 DROP TABLE IF EXISTS properties;
@@ -31,7 +38,8 @@ CREATE TABLE properties (
     status      TEXT,
     delivery    TEXT,
     main_image  TEXT,
-    description TEXT
+    description TEXT,
+    company_id  INTEGER REFERENCES companies(id)
 );
 
 CREATE TABLE property_features (

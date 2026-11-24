@@ -5,8 +5,10 @@ from collections import Counter
 import pandas as pd
 import streamlit as st
 
+import auth
 import db
 import session
+from utils import esc, safe
 
 st.set_page_config(
     page_title="لوحة الإدارة | Aqarify",
@@ -14,6 +16,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+session.restore_login()  # يرجّع تسجيل الدخول بعد Refresh
 
 ss = st.session_state
 
@@ -42,13 +46,13 @@ st.markdown("""
     [data-testid="stSidebar"], [data-testid="collapsedControl"],
     [data-testid="stSidebarCollapsedControl"] { display: none !important; }
     #MainMenu, footer { visibility: hidden; }
-    .block-container { padding-top: 2rem; max-width: 1280px; }
+    .block-container { padding-top: 7rem; max-width: 1280px; }
 
     /* ─── الشعار ─── */
     .brand-logo-link { display: inline-flex; align-items: center; gap: 14px; }
     .brand-icon-box {
-        background: #F0EFEA; color: var(--color-dark); width: 52px; height: 52px; border-radius: 14px;
-        border: 1px solid var(--color-border); box-shadow: 0 4px 12px rgba(20,22,28,.06);
+        background: var(--color-dark); color: var(--color-accent); width: 52px; height: 52px; border-radius: 14px;
+        border: 1px solid var(--color-dark); box-shadow: 0 6px 16px rgba(20,22,28,.18);
         display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
     }
     .brand-logo-text { font-size: 34px; font-weight: 800; color: var(--color-dark); line-height: 1; margin: 0; }
@@ -58,7 +62,7 @@ st.markdown("""
     /* ─── شريط التنقل ─── */
     .st-key-topnav, .st-key-topnav > [data-testid="stVerticalBlock"] {
         display: flex !important; flex-direction: row !important; flex-wrap: wrap;
-        justify-content: flex-end; align-items: center; gap: 28px !important; padding-top: 10px;
+        justify-content: flex-end; align-items: center; gap: 22px !important; padding-top: 14px;
     }
     .st-key-topnav [data-testid="stElementContainer"],
     .st-key-topnav [data-testid="stPageLink"] { width: auto !important; flex: 0 0 auto !important; }
@@ -68,15 +72,16 @@ st.markdown("""
         color: var(--color-dark) !important; text-decoration: none !important; transition: color .2s ease;
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"] p {
-        font-size: 17px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
+        font-size: 16px !important; font-weight: 700 !important; color: inherit !important; margin: 0 !important;
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"]::before {
-        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; font-size: 16px; content: "\\f015";
+        font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; font-size: 15px; width: 18px; text-align: center; content: "\\f015";
     }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Properties"]::before { content: "\\f64f"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Customer"]::before   { content: "\\f508"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Calculator"]::before { content: "\\f1ec"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Admin"]::before      { content: "\\f1de"; }
+    .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Company"]::before    { content: "\\f1ad"; }
     .st-key-topnav [data-testid="stPageLink-NavLink"]:hover { color: var(--color-accent) !important; background: transparent !important; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Admin"] { color: var(--color-accent) !important; }
     .st-key-topnav [data-testid="stPageLink-NavLink"][href*="Admin"]::after {
@@ -101,12 +106,23 @@ st.markdown("""
     .badge.prog { background: #F6EBCB; border-color: #F6EBCB; }
 
     /* ─── التبويبات ─── */
-    .stTabs [data-baseweb="tab-list"] { gap: 12px; border-bottom: none; }
-    .stTabs [data-baseweb="tab"] { height: 46px; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 12px; padding: 0 22px; }
-    .stTabs [data-baseweb="tab"] p { font-weight: 800; }
-    .stTabs [aria-selected="true"] { background: var(--color-dark) !important; border-color: var(--color-dark); }
-    .stTabs [aria-selected="true"] p { color: var(--color-accent) !important; }
-    .stTabs [data-baseweb="tab-highlight"], .stTabs [data-baseweb="tab-border"] { display: none; }
+    .stTabs [role="tablist"] {
+        display: inline-flex; width: fit-content; max-width: 100%; gap: 4px; padding: 4px; margin-bottom: 12px;
+        background: rgba(255,255,255,.78); border: 1px solid var(--color-border) !important; border-radius: 14px;
+        box-shadow: 0 6px 20px rgba(20,22,28,.05);
+    }
+    .stTabs [role="tablist"] > div:empty, .stTabs [data-baseweb="tab-highlight"], .stTabs [data-baseweb="tab-border"] { display: none !important; }
+    .stTabs [role="tab"] {
+        height: 38px; padding: 0 18px; border: none !important; border-radius: 10px;
+        background: transparent !important; color: var(--color-dark); transition: all .22s ease;
+    }
+    .stTabs [role="tab"] p { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 700; color: inherit; }
+    .stTabs [role="tab"]:hover { background: rgba(201,162,75,.14) !important; }
+    .stTabs [role="tab"][aria-selected="true"] {
+        background: linear-gradient(135deg, #23262F, #14161C) !important;
+        box-shadow: 0 5px 12px rgba(20,22,28,.22), inset 0 0 0 1px rgba(201,162,75,.5);
+    }
+    .stTabs [role="tab"][aria-selected="true"] p, .stTabs [role="tab"][aria-selected="true"] [data-testid="stIconMaterial"] { color: var(--color-accent) !important; }
 
     /* ─── الأزرار الموحدة: عدّل هذا القسم فقط عند توحيد التصميم ─── */
     [data-testid="stBaseButton-secondary"], [data-testid="stBaseButton-primary"],
@@ -130,8 +146,10 @@ st.markdown("""
     @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
     /* ─── تحسينات التجاوب مع الهواتف الذكية (Mobile Responsive) ─── */
     @media (max-width: 768px) {
+        .stTabs [role="tablist"] { width: 100%; }
+        .stTabs [role="tab"] { flex: 1; justify-content: center; padding: 0 8px; }
         .block-container {
-            padding-top: 1rem !important;
+            padding-top: 5rem !important;
             padding-left: 1rem !important;
             padding-right: 1rem !important;
             max-width: 100% !important;
@@ -154,11 +172,16 @@ st.markdown("""
 # ═══════════════════════════════════════════════════════════════
 # 2) الهيدر الموحد
 # ═══════════════════════════════════════════════════════════════
-col_logo, col_nav = st.columns([1.5, 2.6])
+import base64, os
+LOGO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "logo.png")
+with open(LOGO_PATH, "rb") as _f:
+    LOGO_B64 = base64.b64encode(_f.read()).decode()
+
+col_logo, col_nav = st.columns([1.1, 3])
 with col_logo:
-    st.markdown("""
+    st.markdown(f"""
     <div class="brand-logo-link">
-        <div class="brand-icon-box"><i class="fa-solid fa-building-columns"></i></div>
+        <img src="data:image/png;base64,{LOGO_B64}" alt="Aqarify" style="height:52px;width:auto;flex-shrink:0;">
         <div>
             <div class="brand-logo-text">Aqarify<span class="brand-logo-dot">.</span></div>
             <span class="brand-logo-sub">بيتك القادم يبدأ من هنا</span>
@@ -174,6 +197,8 @@ with col_nav:
         st.page_link("pages/Calculator.py", label="حاسبة التمويل")
         if ss.get("is_admin_logged_in", False):
             st.page_link("pages/Admin.py", label="لوحة الإدارة")
+        if (st.session_state.get("user") or {}).get("role") == "company":
+            st.page_link("pages/Company.py", label="لوحة الشركة")
 
 st.markdown("<hr style='margin: 10px 0 25px 0; border-color: var(--color-border);'>", unsafe_allow_html=True)
 
@@ -198,17 +223,6 @@ TK_STATUSES = ["جديدة", "قيد المتابعة", "مكتملة"]
 DEFAULT_IMG = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
 
 
-def to_legacy(p):
-    """يحوّل صف الـ DB لنفس الشكل اللي باقي الصفحة متعودة عليه (price_val, price, desc)."""
-    p = dict(p)
-    p["price_val"] = int(p["price"])
-    p["price"] = f"{p['price_val']:,}"
-    p["desc"] = p.pop("description", "") or ""
-    if isinstance(p.get("area"), float) and p["area"].is_integer():
-        p["area"] = int(p["area"])
-    return p
-
-
 def build_unit(uid, f):
     price = int(f["price"])
     city = f["city_new"].strip() or f["city"]
@@ -219,7 +233,7 @@ def build_unit(uid, f):
     desc = f["desc"].strip() or (f"{f['type']} بمساحة {area} م² و{beds} غرفة نوم و{baths} حمام داخل {compound} في {city}.")
     gallery = [g.strip() for g in (f["g1"], f["g2"]) if g.strip()]
     return {
-        "id": uid, "title": title, "type": f["type"], "city": city, "compound": compound,
+        "id": uid, "company_id": f.get("company_id"), "title": title, "type": f["type"], "city": city, "compound": compound,
         "location": f"{city} - {compound}", "price_val": price, "price": f"{price:,}",
         "beds": beds, "baths": baths, "area": area,
         "floor": None if int(f["floor"]) == 0 else int(f["floor"]),
@@ -230,6 +244,8 @@ def build_unit(uid, f):
 
 
 def validate(f):
+    if not f.get("company_id"):
+        return "اختر الشركة المالكة (أضف شركة من تبويب الشركات لو القائمة فاضية)."
     if not f["compound"].strip():
         return "اكتب اسم الكمبوند أو المشروع."
     if int(f["price"]) <= 0 or int(f["area"]) <= 0:
@@ -237,9 +253,11 @@ def validate(f):
     return None
 # ===== LOGIC END =====
 
-props = sorted((to_legacy(p) for p in db.search_properties(sort="newest")), key=lambda p: p["id"])
+props = db.list_properties_legacy()
 tickets = [{**t, "pk": t["id"], "id": t["code"]} for t in db.list_tickets()]
 BY_ID = {p["id"]: p for p in props}
+COMPANIES = db.list_companies()
+COMP_BY_ID = {c["id"]: c for c in COMPANIES}
 
 TYPES = sorted({p["type"] for p in props} | {"شقة", "فيلا", "دوبلكس", "تاون هاوس", "بنتهاوس", "شاليه", "استوديو"})
 CITIES = sorted({p["city"] for p in props} or {"التجمع الخامس"})
@@ -266,14 +284,14 @@ def money(v):
 h1, h2 = st.columns([4, 1])
 with h1:
     st.markdown("<h2 style='font-weight:800; font-size:32px; margin-bottom:2px;'>لوحة الإدارة</h2>"
-                f"<p style='color:var(--color-text-muted); font-size:16px;'>مرحباً {current_user['name']}، "
+                f"<p style='color:var(--color-text-muted); font-size:16px;'>مرحباً {esc(current_user['name'])}، "
                 "إدارة الوحدات ومتابعة التذاكر ومؤشرات الأداء في مكان واحد.</p>",
                 unsafe_allow_html=True)
 with h2:
     st.button("تسجيل الخروج", icon=":material/logout:", on_click=session.logout_user, width="stretch")
 show_flash()
 
-tab_dash, tab_units, tab_tickets = st.tabs(["المؤشرات", "إدارة الوحدات", "التذاكر"])
+tab_dash, tab_units, tab_companies, tab_tickets = st.tabs(["المؤشرات", "إدارة الوحدات", "الشركات", "التذاكر"])
 
 # ═══════════════════════════════════════════════════════════════
 # 6) المؤشرات
@@ -319,7 +337,7 @@ with tab_dash:
                 st.info("لا توجد تذاكر بعد.")
 
     rows = ""
-    for t in tickets[-5:][::-1]:
+    for t in map(safe, tickets[-5:][::-1]):
         cls = "new" if t["status"] == "جديدة" else ("prog" if t["status"] == "قيد المتابعة" else "")
         rows += (f'<div class="tk-row"><div><b>{t["name"]}</b> · {t["phone"]}<small>{t["topic"]} · {t.get("created_at", "")}</small></div>'
                  f'<span class="badge {cls}">{t["status"]}</span></div>')
@@ -335,6 +353,10 @@ def unit_form(form_key, u=None):
         a, b = st.columns(2)
         with a:
             utype = st.selectbox("نوع الوحدة", TYPES, index=TYPES.index(d["type"]) if d.get("type") in TYPES else 0)
+            comp_ids = [c["id"] for c in COMPANIES]
+            company_id = st.selectbox(
+                "الشركة المالكة", comp_ids, format_func=lambda i: COMP_BY_ID[i]["name"],
+                index=comp_ids.index(d["company_id"]) if d.get("company_id") in comp_ids else 0) if comp_ids else None
             city = st.selectbox("المنطقة", CITIES, index=CITIES.index(d["city"]) if d.get("city") in CITIES else 0)
             city_new = st.text_input("منطقة جديدة (اختياري، تتجاوز الاختيار أعلاه)")
             compound = st.text_input("الكمبوند أو المشروع", value=d.get("compound", ""))
@@ -358,7 +380,7 @@ def unit_form(form_key, u=None):
         sub = st.form_submit_button("حفظ التعديلات" if u else "إضافة الوحدة", icon=":material/save:",
                                     type="primary", width="stretch")
     if sub:
-        return {"type": utype, "city": city, "city_new": city_new, "compound": compound, "title": title,
+        return {"company_id": company_id, "type": utype, "city": city, "city_new": city_new, "compound": compound, "title": title,
                 "price": price, "area": area, "beds": beds, "baths": baths, "floor": floor,
                 "finishing": finishing, "status": status, "delivery": delivery, "features": features,
                 "feat_extra": feat_extra, "main_image": main_image, "g1": g1, "g2": g2, "desc": desc}
@@ -377,7 +399,7 @@ with tab_units:
                 if (tf == "الكل" or p["type"] == tf) and (sf == "الكل" or p["status"] == sf)
                 and (not q or q.strip().lstrip("#") == str(p["id"]) or q in p["title"] or q in p["location"])]
         df = pd.DataFrame([{
-            "#": p["id"], "العنوان": p["title"], "النوع": p["type"], "الموقع": p["location"],
+            "#": p["id"], "الشركة": p.get("company_name") or "—", "العنوان": p["title"], "النوع": p["type"], "الموقع": p["location"],
             "السعر": money(p["price_val"]), "المساحة": p["area"], "الغرف": p["beds"],
             "الحالة": p["status"], "الاستلام": p["delivery"],
         } for p in view])
@@ -406,7 +428,7 @@ with tab_units:
                                format_func=lambda i: f"#{i} · {BY_ID[i]['title']} · {BY_ID[i]['location']}")
             cur = BY_ID[uid]
             st.markdown(f'<div style="height:130px;width:220px;border-radius:14px;margin-bottom:12px;background-size:cover;'
-                        f'background-position:center;background-color:var(--color-border);background-image:url({cur["main_image"]})"></div>',
+                        f'background-position:center;background-color:var(--color-border);background-image:url({esc(cur["main_image"])})"></div>',
                         unsafe_allow_html=True)
             data = unit_form(f"edit_form_{uid}", cur)
             if data:
@@ -433,6 +455,96 @@ with tab_units:
 # ═══════════════════════════════════════════════════════════════
 # 8) التذاكر
 # ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
+# 7-ب) الشركات (marketplace): كل شركة لها حساب وبتضيف وحداتها
+# ═══════════════════════════════════════════════════════════════
+with tab_companies:
+    sub_clist, sub_cadd = st.tabs(["الشركات الحالية", "إضافة شركة"])
+
+    with sub_clist:
+        if not COMPANIES:
+            st.info("لا توجد شركات بعد. أضف أول شركة من تبويب «إضافة شركة».")
+        else:
+            st.dataframe(pd.DataFrame([{
+                "#": c["id"], "الشركة": c["name"], "الوحدات": c["units"], "الحسابات": c["accounts"],
+            } for c in COMPANIES]), width="stretch", hide_index=True, height=260)
+
+            cid = st.selectbox("اختر شركة", [c["id"] for c in COMPANIES], key="adm_comp_sel",
+                               format_func=lambda i: COMP_BY_ID[i]["name"])
+            cc = COMP_BY_ID[cid]
+            with st.form(f"comp_edit_{cid}"):
+                e_name = st.text_input("اسم الشركة", value=cc["name"])
+                e_logo = st.text_input("رابط الشعار (اختياري)", value=cc["logo_url"])
+                e_desc = st.text_area("نبذة عن الشركة (اختياري)", value=cc["description"])
+                save_c = st.form_submit_button("حفظ بيانات الشركة", icon=":material/save:",
+                                               type="primary", width="stretch")
+            if save_c:
+                if not e_name.strip():
+                    st.error("اسم الشركة مطلوب.")
+                elif db.update_company(cid, e_name, e_logo, e_desc):
+                    flash("success", f"تم تحديث الشركة #{cid}.")
+                    st.rerun()
+                else:
+                    st.error("هذا الاسم مستخدم لشركة أخرى.")
+
+            st.markdown("<div class='box-title' style='margin-top:18px;'><i class='fa-solid fa-user-tie'></i> حسابات الشركة</div>",
+                        unsafe_allow_html=True)
+            accts = db.list_company_accounts(cid)
+            if accts:
+                st.dataframe(pd.DataFrame([{"الاسم": x["name"], "البريد": x["email"]} for x in accts]),
+                             width="stretch", hide_index=True)
+            else:
+                st.caption("لا يوجد حساب لهذه الشركة بعد، فلن تستطيع إضافة وحدات.")
+            with st.form(f"comp_acct_{cid}", clear_on_submit=True):
+                a_name = st.text_input("اسم المسؤول")
+                a_email = st.text_input("البريد الإلكتروني")
+                a_pw = st.text_input("كلمة المرور (8 أحرف على الأقل)", type="password")
+                add_a = st.form_submit_button("إنشاء حساب للشركة", icon=":material/person_add:", width="stretch")
+            if add_a:
+                ok, msg = auth.create_user(a_name, a_email, a_pw, role="user", company_id=cid)
+                if ok:
+                    flash("success", f"تم إنشاء حساب للشركة: {a_email.strip().lower()}")
+                    st.rerun()
+                else:
+                    st.error(msg)
+
+            st.markdown("<div class='box-title' style='margin-top:18px;'><i class='fa-solid fa-trash'></i> حذف الشركة</div>",
+                        unsafe_allow_html=True)
+            sure_c = st.checkbox("أؤكد رغبتي في حذف هذه الشركة نهائياً", key=f"comp_del_ok_{cid}")
+            if st.button("حذف الشركة", icon=":material/delete:", disabled=not sure_c, key=f"comp_del_{cid}"):
+                ok, msg = db.delete_company(cid)
+                flash("success" if ok else "error", f"تم حذف الشركة #{cid}." if ok else msg)
+                st.rerun()
+
+    with sub_cadd:
+        with st.form("comp_add_form", clear_on_submit=True):
+            n_name = st.text_input("اسم الشركة")
+            n_logo = st.text_input("رابط الشعار (اختياري)")
+            n_desc = st.text_area("نبذة عن الشركة (اختياري)")
+            st.markdown("<div class='box-title' style='margin-top:8px;'>حساب الشركة (اختياري الآن، ويمكن إضافته لاحقاً)</div>",
+                        unsafe_allow_html=True)
+            n_acc_name = st.text_input("اسم المسؤول", key="n_acc_name")
+            n_acc_email = st.text_input("البريد الإلكتروني", key="n_acc_email")
+            n_acc_pw = st.text_input("كلمة المرور (8 أحرف على الأقل)", type="password", key="n_acc_pw")
+            add_c = st.form_submit_button("إضافة الشركة", icon=":material/add_business:",
+                                          type="primary", width="stretch")
+        if add_c:
+            want_acct = bool(n_acc_email.strip() or n_acc_pw or n_acc_name.strip())
+            new_cid = db.create_company(n_name, n_logo, n_desc)
+            if new_cid is None:
+                st.error("اسم الشركة فاضي أو مستخدم قبل كده.")
+            elif want_acct:
+                ok, msg = auth.create_user(n_acc_name, n_acc_email, n_acc_pw, role="user", company_id=new_cid)
+                if ok:
+                    flash("success", "تمت إضافة الشركة وإنشاء حسابها.")
+                    st.rerun()
+                else:
+                    db.delete_company(new_cid)
+                    st.error(msg)
+            else:
+                flash("success", "تمت إضافة الشركة.")
+                st.rerun()
+
 with tab_tickets:
     if not tickets:
         st.info("لا توجد تذاكر حتى الآن. ستظهر هنا التذاكر التي يسجلها العملاء من صفحة المستشار.")
@@ -453,7 +565,7 @@ with tab_tickets:
             return f"#{pid} {title}".strip()
 
         dft = pd.DataFrame([{
-            "رقم التذكرة": t["id"], "الاسم": t["name"], "الهاتف": t["phone"], "نوع الطلب": t["topic"],
+            "رقم التذكرة": t["id"], "الشركة": COMP_BY_ID.get(t.get("company_id"), {}).get("name", "—"), "الاسم": t["name"], "الهاتف": t["phone"], "نوع الطلب": t["topic"],
             "الوحدة": prop_label(t), "الحالة": t["status"],
             "التاريخ": t.get("created_at", ""), "ملاحظات": t.get("notes", ""),
         } for t in shown])
@@ -464,9 +576,10 @@ with tab_tickets:
         st.markdown("<div class='box-title' style='margin-top:18px;'><i class='fa-solid fa-pen-to-square'></i> تحديث تذكرة</div>", unsafe_allow_html=True)
         tid = st.selectbox("اختر التذكرة", [t["id"] for t in tickets][::-1], key="tk_sel")
         cur_t = next(t for t in tickets if t["id"] == tid)
-        st.markdown(f'<div class="box"><b>{cur_t["name"]}</b> · {cur_t["phone"]}<br>'
-                    f'<span style="color:var(--color-text-muted)">{cur_t["topic"]} · {prop_label(cur_t)}</span><br>'
-                    f'{cur_t.get("notes", "") or "بدون ملاحظات"}</div>', unsafe_allow_html=True)
+        ct = safe(cur_t)
+        st.markdown(f'<div class="box"><b>{ct["name"]}</b> · {ct["phone"]}<br>'
+                    f'<span style="color:var(--color-text-muted)">{ct["topic"]} · {esc(prop_label(cur_t))}</span><br>'
+                    f'{ct.get("notes", "") or "بدون ملاحظات"}</div>', unsafe_allow_html=True)
         new_status = st.selectbox("الحالة الجديدة", TK_STATUSES, index=TK_STATUSES.index(cur_t["status"]), key=f"tk_status_{tid}")
         b1, b2 = st.columns(2)
         with b1:
